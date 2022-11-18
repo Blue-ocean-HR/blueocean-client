@@ -1,0 +1,8 @@
+The website favicon is NOT being bundled by webpack.
+
+I couldn't figure out how to add it in the Javascript.
+
+Relevant: https://webpack.js.org/guides/asset-management/
+
+There are a few NPM packages that allow you to add a Favicon
+from the JS, but I wasn't patient enough to figure any of them out.
