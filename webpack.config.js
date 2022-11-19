@@ -6,11 +6,13 @@ module.exports = {
   devServer: {
     port: '4000',
     static: './dist',
-    hot: true
+    hot: true,
+    historyApiFallback: true,
   },
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   module: {
     rules: [

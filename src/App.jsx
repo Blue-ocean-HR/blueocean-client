@@ -1,10 +1,20 @@
 import React from 'react';
-
+import DummyHome from './DummyHome.jsx';
+import DummyPantry from './DummyPantry.jsx'
+import Nav from './Nav.jsx'
+import {Routes, Route, Link} from 'react-router-dom'
 const App = () => {
   return (
-    <div>
-      <h1 className="text-primary text-4xl font-black">Hello world! I am using React</h1>
-      <h2 className="text-white">Hello, I should be hidden</h2>
+    <div className="bg-orange-100 h-screen">
+    <div >
+      <Nav />
+      <Routes>
+        <Route path="/" element={<DummyHome />} />
+        <Route path="/pantry" element={<DummyPantry />} />
+        </Routes>
+
+
+    </div>
     </div>
   )
 }

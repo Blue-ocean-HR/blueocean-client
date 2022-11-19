@@ -20,7 +20,8 @@
   "homepage": "https://github.com/Blue-ocean-HR/blueocean-client#readme",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
