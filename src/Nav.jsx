@@ -9,9 +9,10 @@ const Nav = () => {
     mobileToggle === "hidden" ? setMobileToggle("") : setMobileToggle("hidden")
   }
   return (
-  <nav>
+    // Use the sticky class to make the nav fixed
+  <nav className="sticky top-0 z-30">
     {/* remove the max-w-7xl to make full width */}
-    <div className="xl:max-w-7xl mx-auto border bg-yellow-600 text-lime-800">
+    <div className="xl:max-w-7xl mx-auto border bg-yellow-600 text-black">
       {/* use justify between to place divs left center and right on nav bar */}
       <div className="flex justify-between">
           {/* Logo */}
@@ -39,8 +40,8 @@ const Nav = () => {
 
           {/* Secondary Nav */}
           <div className="hidden md:flex items-center space-x-1">
-          <a className="py-3 px-3">Login</a>
-          <a className="py-3 px-3">Signup</a>
+          <div className="py-3 px-3">Login</div>
+          <div className="py-3 px-3">Signup</div>
             {/* Mobile button */}
 
             {/* Place authenticate button here */}
