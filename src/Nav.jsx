@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {NavBarButtons} from './components/mobile-nav-bar-buttons.jsx'
 
 
 const Nav = () => {
@@ -12,7 +13,7 @@ const Nav = () => {
     // Use the sticky class to make the nav fixed
   <nav className="sticky top-0 z-30">
     {/* remove the max-w-7xl to make full width */}
-    <div className="xl:max-w-7xl mx-auto border bg-yellow-600 text-black">
+    <div className="xl:max-w-7xl mx-auto border bg-sage text-black">
       {/* use justify between to place divs left center and right on nav bar */}
       <div className="flex justify-between">
           {/* Logo */}
@@ -40,8 +41,9 @@ const Nav = () => {
 
           {/* Secondary Nav */}
           <div className="hidden md:flex items-center space-x-1">
-          <div className="py-3 px-3">Login</div>
-          <div className="py-3 px-3">Signup</div>
+          <NavBarButtons />
+          {/* <div className="py-3 px-3">Login</div>
+          <div className="py-3 px-3">Signup</div> */}
             {/* Mobile button */}
 
             {/* Place authenticate button here */}
@@ -57,9 +59,9 @@ const Nav = () => {
     </div>
     {/* mobile menu */}
     <div className={`${mobileToggle} md:hidden`}>
-
-      <a className="block py-2 px-4 text-sm hover:bg-gray-200">Login</a>
-      <a className="block py-2 px-4 text-sm hover:bg-gray-200">Signup</a>
+      <NavBarButtons />
+      {/* <a className="block py-2 px-4 text-sm hover:bg-gray-200">Login</a>
+      <a className="block py-2 px-4 text-sm hover:bg-gray-200">Signup</a> */}
     </div>
   </nav>
   )

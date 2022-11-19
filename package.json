@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/Blue-ocean-HR/blueocean-client#readme",
   "dependencies": {
+    "@auth0/auth0-react": "^1.12.0",
+    "dotenv": "^16.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3"
