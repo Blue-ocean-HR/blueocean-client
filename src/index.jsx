@@ -12,9 +12,9 @@ const root = ReactDOM.createRoot(document.getElementById('app'))
 root.render(
   <React.StrictMode>
   <Router>
-    <Auth0ProviderWithHistory>
+    {/* <Auth0ProviderWithHistory>*/}
+
       <App />
-    </Auth0ProviderWithHistory>
   </Router>,
   </React.StrictMode>
 
