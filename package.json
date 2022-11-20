@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "build": "webpack --mode=production",
+    "server": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,9 @@
   "homepage": "https://github.com/Blue-ocean-HR/blueocean-client#readme",
   "dependencies": {
     "@auth0/auth0-react": "^1.12.0",
-    "dotenv": "^16.0.3",
+    "axios": "^1.1.3",
+    "express": "^4.18.2",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3"
@@ -34,6 +38,7 @@
     "babel-jest": "^29.1.2",
     "babel-loader": "^8.2.1",
     "css-loader": "^6.7.1",
+    "dotenv-webpack": "^8.0.1",
     "postcss": "^8.4.19",
     "postcss-loader": "^7.0.1",
     "postcss-preset-env": "^7.8.3",

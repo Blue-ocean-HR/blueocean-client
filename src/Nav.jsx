@@ -13,7 +13,7 @@ const Nav = () => {
     // Use the sticky class to make the nav fixed
   <nav className="sticky top-0 z-30">
     {/* remove the max-w-7xl to make full width */}
-    <div className="xl:max-w-7xl mx-auto border bg-sage text-black">
+    <div className="xl:max-w-7xl mx-auto border bg-sage text-black rounded">
       {/* use justify between to place divs left center and right on nav bar */}
       <div className="flex justify-between">
           {/* Logo */}
@@ -30,12 +30,11 @@ const Nav = () => {
         </div>
           {/* Primary Nav */}
           <Link to="/pantry">
-            <div className="py-3 px-3 hover:text-gray-900">
+            <div className="py-1 px-3 hover:text-gray-900">
             My Pantry
             </div>
 
             </Link>
-
           </div>
 
 
@@ -48,6 +47,7 @@ const Nav = () => {
 
             {/* Place authenticate button here */}
           </div>
+          <div className="py-3 px-3 hover:text-gray-900">Account</div>
           <div className="md:hidden flex items-center">
               <button onClick={handleMobile}>
                 <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
