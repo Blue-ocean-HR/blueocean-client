@@ -12,7 +12,7 @@ app.use(express.static(path.resolve(__dirname, './dist')));
 
 // direct all requested routes to index.html to let react router handle them
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../seed-bank/build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, './dist', 'index.html'));
   });
 
 app.listen(PORT, () => {
