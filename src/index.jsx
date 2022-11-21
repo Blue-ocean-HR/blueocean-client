@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Auth0ProviderWithHistory } from "./auth/auth0-provider-with-history.jsx";
 import './style.css';
 import {
   BrowserRouter as Router,
@@ -11,9 +12,9 @@ const root = ReactDOM.createRoot(document.getElementById('app'))
 root.render(
   <React.StrictMode>
   <Router>
-    {/* <Auth0ProviderWithHistory> */}
+    <Auth0ProviderWithHistory>
       <App />
-    {/* </Auth0ProviderWithHistory> */}
+    </Auth0ProviderWithHistory>
   </Router>,
   </React.StrictMode>
 
