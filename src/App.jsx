@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import axios from 'axios'
 import DummyHome from './DummyHome.jsx';
 import Pantry from './components/pantry/Pantry.jsx'
+import RecipeFull from './components/RecipeFull.jsx'
 import Nav from './Nav.jsx'
 import {Routes, Route, Link} from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
@@ -22,6 +23,7 @@ const App = () => {
     <div >
       <Nav />
       <Routes>
+        <Route path="/:recipeId" element={<RecipeFull />} />
         <Route path="/" element={<DummyHome />} />
         <Route path="/pantry" element={<Pantry />} />
         </Routes>
