@@ -9,7 +9,6 @@ export const Auth0ProviderWithHistory = ({ children }) => {
   // const domain = "dev-q1nlgm35vyynaerp.us.auth0.com"
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
   // const clientId = "7bkpIFLmldcQ5TwNGKiKXuivM0Jzrlpv"
-  const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
   // const redirectUri = process.env.REACT_APP_AUTH0_CALLBACK_URL;
 
   const onRedirectCallback = (appState) => {
