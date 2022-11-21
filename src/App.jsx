@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import axios from 'axios'
 import DummyHome from './DummyHome.jsx';
 import DummyPantry from './DummyPantry.jsx'
 import Nav from './Nav.jsx'
@@ -14,6 +15,8 @@ const App = () => {
   //     </div>
   //   );
   // }
+
+
   return (
     <div className="bg-slate-200 h-screen">
     <div >
