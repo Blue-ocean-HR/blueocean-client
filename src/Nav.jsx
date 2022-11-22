@@ -2,9 +2,11 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {NavBarButtons} from './components/mobile-nav-bar-buttons.jsx'
 import DarkButton from './components/DarkButton.jsx'
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const Nav = ({darkToggle}) => {
+  const {isAuthenticated, user} = useAuth0()
   const [mobileToggle, setMobileToggle] = React.useState("hidden")
 
   const handleMobile = () => {
@@ -43,8 +45,8 @@ const Nav = ({darkToggle}) => {
 
           {/* Secondary Nav */}
           <div className="hidden md:flex items-center space-x-1">
-          <DarkButton darkToggle={darkToggle} />
-          <NavBarButtons />
+            {/* <DarkButton darkToggle={darkToggle} />
+            <NavBarButtons /> */}
           {/* <div className="py-3 px-3">Login</div>
           <div className="py-3 px-3">Signup</div> */}
             {/* Mobile button */}
@@ -52,12 +54,15 @@ const Nav = ({darkToggle}) => {
             {/* Place authenticate button here */}
           </div>
           <div className="flex items-center ">
-
-          <div className=" hover:text-gray-900">Account</div>
+          <div className="hidden md:block">
+          <DarkButton darkToggle={darkToggle} />
+          </div>
+          {isAuthenticated ? <Link to='/account'><div className=" hover:text-gray-900">Account</div></Link>  :
+           <NavBarButtons />}
           </div>
 
 
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center px-3">
               <button onClick={handleMobile}>
                 <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
@@ -67,9 +72,9 @@ const Nav = ({darkToggle}) => {
           </div>
     </div>
     {/* mobile menu */}
-    <div className={`${mobileToggle} md:hidden`}>
+    <div className={`${mobileToggle} md:hidden flex justify-end`}>
       <DarkButton darkToggle={darkToggle} />
-      <NavBarButtons />
+      {/* <NavBarButtons /> */}
       {/* <a className="block py-2 px-4 text-sm hover:bg-gray-200">Login</a>
       <a className="block py-2 px-4 text-sm hover:bg-gray-200">Signup</a> */}
     </div>

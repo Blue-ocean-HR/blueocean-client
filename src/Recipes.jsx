@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquarePlus} from '@fortawesome/free-solid-svg-icons'
 import Recipe from './Recipe.jsx'
+import {motion} from 'framer-motion'
 
 const Recipes = () => {
   const [query, setQuery] = useState('');
@@ -54,7 +55,11 @@ const Recipes = () => {
   }
 
   return (
-    <div className="recipes-page">
+    <motion.div className="recipes-page"
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    >
       <div className="recipes-inner">
       <h1 className="text-primary text-4xl font-bold">RECIPES</h1>
 
@@ -95,7 +100,7 @@ const Recipes = () => {
       {/* FILTER DROPDOWN */}
 
 
-    </div>
+    </motion.div>
   )
 }
 
