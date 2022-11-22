@@ -2,9 +2,11 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {NavBarButtons} from './components/mobile-nav-bar-buttons.jsx'
 import DarkButton from './components/DarkButton.jsx'
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const Nav = ({darkToggle}) => {
+  const {isAuthenticated, user} = useAuth0()
   const [mobileToggle, setMobileToggle] = React.useState("hidden")
 
   const handleMobile = () => {
@@ -43,8 +45,8 @@ const Nav = ({darkToggle}) => {
 
           {/* Secondary Nav */}
           <div className="hidden md:flex items-center space-x-1">
-          <DarkButton darkToggle={darkToggle} />
-          <NavBarButtons />
+            {/* <DarkButton darkToggle={darkToggle} />
+            <NavBarButtons /> */}
           {/* <div className="py-3 px-3">Login</div>
           <div className="py-3 px-3">Signup</div> */}
             {/* Mobile button */}
@@ -52,8 +54,8 @@ const Nav = ({darkToggle}) => {
             {/* Place authenticate button here */}
           </div>
           <div className="flex items-center ">
-
-          <div className=" hover:text-gray-900">Account</div>
+          <DarkButton darkToggle={darkToggle} />
+          {isAuthenticated ? <div className=" hover:text-gray-900">Account</div>  : <NavBarButtons />}
           </div>
 
 
