@@ -9,6 +9,7 @@ import Nav from './Nav.jsx'
 
 import {Routes, Route, Link, useLocation} from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
+import Recipes from './Recipes.jsx'
 const App = () => {
 
   const location = useLocation();
@@ -42,12 +43,10 @@ const App = () => {
           <Route path="/pantry" element={<Pantry />} />
         </Routes>
       </AnimatePresence>
-
-
     </motion.div>
     </div>
     </div>
-  )
-}
+  )}
+
 
 export default App;
