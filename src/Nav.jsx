@@ -1,9 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {NavBarButtons} from './components/mobile-nav-bar-buttons.jsx'
+import DarkButton from './components/DarkButton.jsx'
 
 
-const Nav = () => {
+const Nav = ({darkToggle}) => {
   const [mobileToggle, setMobileToggle] = React.useState("hidden")
 
   const handleMobile = () => {
@@ -13,7 +14,7 @@ const Nav = () => {
     // Use the sticky class to make the nav fixed
   <nav className="sticky top-0 z-30">
     {/* remove the max-w-7xl to make full width */}
-    <div className="xl:max-w-7xl mx-auto border bg-sage text-black rounded">
+    <div className="xl:max-w-7xl mx-auto border bg-secondary dark:bg-black  dark:border-white dark:text-white text-black rounded">
       {/* use justify between to place divs left center and right on nav bar */}
       <div className="flex justify-between">
           {/* Logo */}
@@ -29,17 +30,20 @@ const Nav = () => {
             </Link>
         </div>
           {/* Primary Nav */}
+          <div className="flex items-center">
           <Link to="/pantry">
-            <div className="py-1 px-3 hover:text-gray-900">
+            <div className=" hover:text-gray-900">
             My Pantry
             </div>
 
             </Link>
+            </div>
           </div>
 
 
           {/* Secondary Nav */}
           <div className="hidden md:flex items-center space-x-1">
+          <DarkButton darkToggle={darkToggle} />
           <NavBarButtons />
           {/* <div className="py-3 px-3">Login</div>
           <div className="py-3 px-3">Signup</div> */}
@@ -47,7 +51,12 @@ const Nav = () => {
 
             {/* Place authenticate button here */}
           </div>
-          <div className="py-3 px-3 hover:text-gray-900">Account</div>
+          <div className="flex items-center ">
+
+          <div className=" hover:text-gray-900">Account</div>
+          </div>
+
+
           <div className="md:hidden flex items-center">
               <button onClick={handleMobile}>
                 <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
@@ -59,6 +68,7 @@ const Nav = () => {
     </div>
     {/* mobile menu */}
     <div className={`${mobileToggle} md:hidden`}>
+      <DarkButton darkToggle={darkToggle} />
       <NavBarButtons />
       {/* <a className="block py-2 px-4 text-sm hover:bg-gray-200">Login</a>
       <a className="block py-2 px-4 text-sm hover:bg-gray-200">Signup</a> */}
