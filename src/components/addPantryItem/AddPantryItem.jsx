@@ -19,7 +19,16 @@ const AddPantryItem = (props) => {
 
   // initial load
   React.useEffect(() => {
+    // TODO: get email from Auth0
     // TODO: get ingredientOptions from server
+    // axios.get(`${APIURL}/getIngredients`, {
+    //   params: {
+    //     email: 'smth idfk'
+    //   }
+    // })
+    // .then(result => {
+    //   console.log(result.rows);
+    // });
   }, []);
 
   function handleSubmit(e) {
@@ -32,7 +41,12 @@ const AddPantryItem = (props) => {
       valid = false;
       window.alert('invalid system ingredient');
     } else {
-      // TODO: send ingredient to API
+      // axios.post(`${APIURL}/pantry`, {
+      //   params: {
+      //     email: 'smth idfk',
+      //     ...other stuff
+      //   }
+      // });
       navigate('/pantry');
     }
   }
