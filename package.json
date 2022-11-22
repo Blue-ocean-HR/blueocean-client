@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve",
-    "build": "webpack",
-    "server": "nodemon server.js"
+    "start": "concurrently npm:watch:*",
+    "watch:compile": "webpack --mode development --watch",
+    "watch:serve": "nodemon server.js"
   },
   "repository": {
     "type": "git",
