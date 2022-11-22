@@ -35,10 +35,8 @@ const AddPantryItem = (props) => {
     e.preventDefault();
 
     if(usingCustomIngredient && customIngredient === '') {
-      valid = false;
       window.alert('invalid custom ingredient');
     } else if(!usingCustomIngredient && systemIngredient === '') {
-      valid = false;
       window.alert('invalid system ingredient');
     } else {
       // axios.post(`${APIURL}/pantry`, {

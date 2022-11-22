@@ -5,10 +5,11 @@ module.exports = {
   mode: 'development',
   entry: './src/index.jsx',
   devServer: {
-    port: '4000',
+    allowedHosts: ['all'],
+    port: 4000,
     static: './dist',
     hot: true,
-    historyApiFallback: true,
+    historyApiFallback: true
   },
   output: {
     filename: 'main.js',
