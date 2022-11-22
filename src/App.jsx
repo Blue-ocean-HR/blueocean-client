@@ -39,7 +39,7 @@ const App = () => {
         <Routes location={location}>
           <Route path="/:recipeId" element={<RecipeFull />} />
           <Route path="/addPantryItem" element={<AddPantryItem />} />
-          <Route path="/" element={<DummyHome />} />
+          <Route path="/" element={<Recipes />} />
           <Route path="/pantry" element={<Pantry />} />
         </Routes>
       </AnimatePresence>
