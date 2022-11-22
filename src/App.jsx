@@ -1,6 +1,7 @@
 import React from 'react';
 import DummyHome from './DummyHome.jsx';
-import Pantry from './components/pantry/Pantry.jsx'
+import Pantry from './components/pantry/Pantry.jsx';
+import AddPantryItem from './components/addPantryItem/AddPantryItem.jsx'
 import Nav from './Nav.jsx'
 import {Routes, Route, Link} from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
@@ -21,6 +22,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<DummyHome />} />
         <Route path="/pantry" element={<Pantry />} />
+        <Route path="/addPantryItem" element={<AddPantryItem />} />
         </Routes>
 
 
