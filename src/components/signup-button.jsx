@@ -16,7 +16,7 @@ export const SignupButton = () => {
   };
 
   return (
-    <button className="bg-yellow-300 rounded mr-3" onClick={handleSignUp}>
+    <button className=" rounded mr-3" onClick={handleSignUp}>
       Sign Up
     </button>
   );

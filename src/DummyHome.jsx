@@ -1,8 +1,11 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const DummyHome = () => {
   return (
-    <div>Home</div>
+    <div>Home
+      <Link to={`/${1234}`}>Link to Full recipe</Link>
+    </div>
   )
 }
 
