@@ -4,6 +4,7 @@ import {AnimatePresence, motion } from 'framer-motion'
 import DummyHome from './DummyHome.jsx';
 import Pantry from './components/pantry/Pantry.jsx'
 import RecipeFull from './components/RecipeFull.jsx'
+import AddPantryItem from './components/addPantryItem/addPantryItem.jsx';
 import Nav from './Nav.jsx'
 
 import {Routes, Route, Link, useLocation} from 'react-router-dom'
@@ -36,6 +37,7 @@ const App = () => {
       <AnimatePresence>
         <Routes location={location}>
           <Route path="/:recipeId" element={<RecipeFull />} />
+          <Route path="/addPantryItem" element={<AddPantryItem />} />
           <Route path="/" element={<DummyHome />} />
           <Route path="/pantry" element={<Pantry />} />
         </Routes>
