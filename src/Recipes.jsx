@@ -5,6 +5,8 @@ import Recipe from './Recipe.jsx'
 
 const Recipes = () => {
   const [query, setQuery] = useState('');
+  const [pantry, setPantry] = useState([]);
+  const [pantryItem, setPantryItem] = useState("");
 
 
   var handleInput = (e) => {
@@ -18,6 +20,29 @@ const Recipes = () => {
   var handleFavorite = (e)=> {
     e.preventDefault();
   }
+
+  var handleIngredientSelect = (e)=> {
+    e.preventDefault();
+    setPantryItem(e.target.value);
+  }
+
+  var handleIngredientAdd = (e) => {
+    e.preventDefault();
+    console.log(pantry, pantryItem)
+    setPantry(old => {
+      if(old.indexOf(pantryItem) !== -1) {
+        return old;
+      } else{
+        return [...old, pantryItem]
+      }
+    })
+
+  }
+  var handleRemove = (item) => {
+    var newArr = pantry.filter(pItem=> pItem !== item)
+    setPantry(newArr)
+  }
+
 
   var dummyData = {
     title: "HI",
@@ -48,41 +73,28 @@ const Recipes = () => {
 
       {/* CHOOSE INGREDIENTS DROP DOWN */}
       <div className="choose-ingredient">
-        <select name="ingredient" id="ingredient-dropdown">
+        <select onChange={handleIngredientSelect} name="ingredient" id="ingredient-dropdown">
           {/* render pantry items accordingly */}
           <option value="" defaultValue>Choose Ingredients...</option>
           <option value="pantry item 1">PANTRY 1</option>
           <option value="pantry item 2">PANTRY 2</option>
         </select>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"><FontAwesomeIcon icon={faSquarePlus} /></button>
+        <button onClick={handleIngredientAdd} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"><FontAwesomeIcon icon={faSquarePlus} /></button>
       </div>
-
-      {/* FILTER DROPDOWN */}
       <div className="filters">
-        {/*applicable filters */}
-        <input type="radio" id={"protein"} name="filter" value="protein"/>
-        <input type="radio" id="vegetables" name="filter" value="vegetables"/>
-        {/*labels for the applicable filters */}
-        <ol className="filters">
-        <li>
-          <label htmlFor="protein">Protein</label>
-        </li>
-        <li>
-          <label htmlFor="vegetables">Vegetables</label>
-        </li>
-        </ol>
-
-
+        {pantry && pantry.map((item, i)=> {
+          console.log(item)
+          return (<div key={i}>{item} <button onClick={()=> {
+            handleRemove(item)
+          }}>X</button><br/></div>)
+        })}
       </div>
-
       {/*map through the recipes*/}
       <Recipe data={dummyData}/>
-
-
-
-
-
       </div>
+      {/* FILTER DROPDOWN */}
+
+
     </div>
   )
 }
