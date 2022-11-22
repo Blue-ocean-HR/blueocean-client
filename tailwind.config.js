@@ -4,14 +4,17 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   content: ['./src/**/*.{js,jsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        'beige':'#F1D3B3',
-        'sage': '#C7BCA1'
+        'primary':'#94B49F',
+        'secondary': '#CEE5D0',
+        'light': '#FCF8E8',
+        'accent': '#ECB390'
       }
     },
   },
