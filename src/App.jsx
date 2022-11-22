@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import {AnimatePresence, motion } from 'framer-motion'
-import DummyHome from './DummyHome.jsx';
 import Pantry from './components/pantry/Pantry.jsx'
+import Account from './components/Account.jsx'
 import RecipeFull from './components/RecipeFull.jsx'
 import AddPantryItem from './components/addPantryItem/addPantryItem.jsx';
 import Nav from './Nav.jsx'
@@ -13,7 +13,7 @@ import Recipes from './Recipes.jsx'
 const App = () => {
 
   const location = useLocation();
-  const { isLoading } = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth0();
   const [darkMode, setDarkMode] = useState('')
   // if (isLoading) {
   //   return (
@@ -25,7 +25,9 @@ const App = () => {
   const darkToggle = () => {
     darkMode === 'dark' ? setDarkMode('') : setDarkMode('dark')
   }
-
+  useEffect(() => {
+    axios.get('/recipes').then(data => console.log(data)).catch(error => console.log(error))
+  }, [])
   return (
     <div className={darkMode}>
     <div className="bg-light h-screen dark:bg-black">
@@ -37,6 +39,7 @@ const App = () => {
       <Nav darkToggle={darkToggle}/>
       <AnimatePresence>
         <Routes location={location}>
+          {isAuthenticated ? <Route path='/account' element={<Account />} /> : null}
           <Route path="/:recipeId" element={<RecipeFull />} />
           <Route path="/addPantryItem" element={<AddPantryItem />} />
           <Route path="/" element={<Recipes />} />

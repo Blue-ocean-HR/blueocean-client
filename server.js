@@ -8,9 +8,15 @@ const app = express();
 
 // Serve the files for production
 app.use(express.static(path.resolve(__dirname, './dist')));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
 
 app.get('/recipes', (req, res) => {
-  res.send('hello from the server')
+  let dummyBody = {ingredients: ["chicken"]}
+  axios.get('http://localhost:8080/recipes', {data: dummyBody}).then(data => {
+    console.log(data)
+    res.send(data.data)
+  }).catch(error => console.log(error))
 })
 // direct all requested routes to index.html to let react router handle them
   app.get('*', (req, res) => {
