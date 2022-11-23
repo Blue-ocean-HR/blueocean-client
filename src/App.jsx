@@ -14,7 +14,8 @@ const App = () => {
 
   const location = useLocation();
   const { isLoading, isAuthenticated, user, context } = useAuth0();
-  const [darkMode, setDarkMode] = useState('')
+  const [darkMode, setDarkMode] = useState('');
+  const [recipes, setRecipes] = useState(null);
   // if (isLoading) {
   //   return (
   //     <div className="page-layout">
@@ -30,7 +31,9 @@ const App = () => {
     if (isAuthenticated) {
       axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
     }
-    axios.get('/recipes').then(data => console.log(data)).catch(error => console.log(error))
+
+    var dummyBody = {ingredients: ["chicken"]}
+    axios.get('http://localhost:3000/recipes', {data: dummyBody}).then(val => setRecipes(val.data[0].json_agg)).catch(error => console.log(error))
     axios.get('/pantry', {params: {email: "max.philip1@gmail.com"}}).then(data => console.log(data)).catch(error => console.log(error))
   }, [user])
   return (
@@ -47,7 +50,7 @@ const App = () => {
           {isAuthenticated ? <Route path='/account' element={<Account />} /> : null}
           <Route path="/:recipeId" element={<RecipeFull />} />
           <Route path="/addPantryItem" element={<AddPantryItem />} />
-          <Route path="/" element={<Recipes />} />
+          <Route path="/" element={recipes && <Recipes recipes={recipes}/>} />
           <Route path="/pantry" element={<Pantry />} />
         </Routes>
       </AnimatePresence>
