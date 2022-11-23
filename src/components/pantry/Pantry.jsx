@@ -1,11 +1,14 @@
+import axios from 'axios';
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
 
 import PantryList from './PantryList.jsx'
 
 const predefinedCategories = ['Veggie', 'Fruit', 'Grain', 'Protein', 'Dairy', 'Other'];
 
 const Pantry = () => {
+  const { user } = useAuth0();
 
   const [search, setSearch] = React.useState('');
   const [filter, setFilters] = React.useState('');
@@ -21,7 +24,14 @@ const Pantry = () => {
   ]);
 
   React.useEffect(() => {
-    // TODO: Get Email, Request all user's pantry items, set ingredients
+    axios.get(`/pantry`, {
+      params: {
+        email: user.email
+      }
+    })
+    .then(result => {
+      setIngredients(result.data);
+    });
   }, []);
 
   return (

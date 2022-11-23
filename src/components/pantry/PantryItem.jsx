@@ -1,9 +1,16 @@
 import React from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
+import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
 const PantryItem = ({ingredient}) => {
+  const { user } = useAuth0();
+
   const [editing, setEditing] = React.useState(false);
   const [expiryDate, setExpiryDate] = React.useState(ingredient.expiryDate);
   const [name, setName] = React.useState(ingredient.name);
+
+  const navigate = useNavigate();
 
   function handleSave() {
     setEditing(false);
@@ -11,25 +18,26 @@ const PantryItem = ({ingredient}) => {
       window.alert('invalid name');
     } else {
     // TODO: Axios update call w/ name, expiryDate, pantryID
-      // axios.put(`${APIURL}/pantry`, {
-      //   params: {
-      //     email: GET EMAIL,
-      //     name: name,
-      //     expiryDate: expiryDate,
-      //     id: ingredient.id
-      //   }
-      // })
+      axios.put(`/pantry`, {
+        params: {
+          email: user.email,
+          name: name,
+          expiryDate: expiryDate,
+          id: ingredient.id
+        }
+      })
     }
   }
 
   function handleDelete() {
   // TODO: Axios delete call w/ Email & Pantry Item ID (ingredient.id)
-    // axios.delete(`${APIURL}/pantry`, {
-    //   params: {
-    //     email: GET EMAIL,
-    //     id: ingredient.id
-    //   }
-    // })
+    axios.delete(`/pantry`, {
+      params: {
+        email: user.email,
+        id: ingredient.id
+      }
+    })
+    navigate('/pantry');
   }
 
   return (
