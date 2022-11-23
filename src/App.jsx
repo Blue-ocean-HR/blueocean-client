@@ -29,12 +29,11 @@ const App = () => {
   // Add user to DB if they just signed up
   useEffect(() => {
     if (isAuthenticated) {
-      axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
+      // axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
     }
 
-    var dummyBody = {ingredients: ["chicken"]}
-    axios.get('http://localhost:3000/recipes', {data: dummyBody}).then(val => setRecipes(val.data[0].json_agg)).catch(error => console.log(error))
-    axios.get('/pantry', {params: {email: "max.philip1@gmail.com"}}).then(data => console.log(data)).catch(error => console.log(error))
+    axios.get('/recipes').then(val => setRecipes(val.data)).catch(error => console.log(error))
+    // axios.get('/pantry', {params: {email: "max.philip1@gmail.com"}}).then(data => console.log(data)).catch(error => console.log(error))
   }, [user])
   return (
     <div className={darkMode}>
