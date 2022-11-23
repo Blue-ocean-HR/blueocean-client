@@ -19,24 +19,18 @@ const PantryItem = ({ingredient}) => {
     } else {
     // TODO: Axios update call w/ name, expiryDate, pantryID
       axios.put(`/pantry`, {
-        params: {
-          email: user.email,
-          name: name,
-          expiryDate: expiryDate,
-          id: ingredient.id
-        }
-      })
+        name: name,
+        date: new Date(Number(expiryDate.substr(0, 4)), Number(expiryDate.substr(5, 2)) - 1, Number(expiryDate.substr(8, 2))).getTime(),
+        id: ingredient.id
+      });
     }
   }
 
   function handleDelete() {
   // TODO: Axios delete call w/ Email & Pantry Item ID (ingredient.id)
     axios.delete(`/pantry`, {
-      params: {
-        email: user.email,
-        id: ingredient.id
-      }
-    })
+      id: ingredient.id
+    });
     navigate('/pantry');
   }
 
