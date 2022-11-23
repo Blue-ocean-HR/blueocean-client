@@ -57,7 +57,7 @@ exports.updatePantryItem = (req, res) => {
 // axios.put('/pantry', {name: "", date: 1234, id: 5}).then(data => console.log(data)).catch(error => console.log(error))
 
 exports.getPantryItems = (req, res) => {
-  axios.get('http://localhost:8080/pantry', {params: req.query}).then(data => {
+  axios.get('http://localhost:8080/pantry', {}, {params: req.query}).then(data => {
     res.send(data.data)
   }).catch(error => {
     res.sendStatus(500)
@@ -66,3 +66,12 @@ exports.getPantryItems = (req, res) => {
 }
 // Sample request from React
 // axios.get('/pantry', {params: {email: "max.philip1@gmail.com"}}).then(data => console.log(data)).catch(error => console.log(error))
+
+exports.getIngredients = (req, res) => {
+  axios.get('http://localhost:8080/ingredients').then(data => {
+    res.send(data.data)
+  }).catch(error => {
+    res.sendStatus(500)
+    console.log(error)
+  })
+}
