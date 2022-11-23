@@ -2,7 +2,8 @@ const axios = require("axios");
 
 // Recipe Routes
 exports.getRecipes = (req, res) => {
-  let dummyBody = {ingredients: ["chicken"]}
+  console.log("SHFKASHGFKABGFSKJHAGBFKSAHBGFLKHSABFHKLSBFSKJABFJSKABFSAJHFBSAJHFSBH", req.params)
+  let dummyBody = {ingredients: ["egg"]}
   axios.get('http://localhost:8080/recipes', {data: dummyBody}).then(recipes => {
     res.send(recipes.data)
   }).catch(error => console.log(error))

@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquarePlus} from '@fortawesome/free-solid-svg-icons'
 import Recipe from './Recipe.jsx'
 import {motion} from 'framer-motion'
+import axios from 'axios'
 
-const Recipes = () => {
+const Recipes = ({recipes}) => {
   const [query, setQuery] = useState('');
   const [pantry, setPantry] = useState([]);
   const [pantryItem, setPantryItem] = useState("");
-
 
   var handleInput = (e) => {
     e.preventDefault();
@@ -17,6 +17,9 @@ const Recipes = () => {
   var handleSearch = (e)=> {
     e.preventDefault();
     console.log(query)
+    var obj = {ingredients: query};
+    axios.get('/recipes', {params: obj})
+
   }
   var handleFavorite = (e)=> {
     e.preventDefault();
@@ -95,7 +98,11 @@ const Recipes = () => {
         })}
       </div>
       {/*map through the recipes*/}
-      <Recipe data={dummyData}/>
+      {recipes.map(recipe => {
+        console.log(recipe)
+        return (<Recipe recipe={recipe}/>)
+      })}
+
       </div>
       {/* FILTER DROPDOWN */}
 
