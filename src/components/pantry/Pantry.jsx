@@ -3,9 +3,12 @@ import {Link} from 'react-router-dom';
 
 import PantryList from './PantryList.jsx'
 
+const predefinedCategories = ['Veggie', 'Fruit', 'Grain', 'Protein', 'Dairy', 'Other'];
+
 const Pantry = () => {
 
   const [search, setSearch] = React.useState('');
+  const [filter, setFilters] = React.useState('');
 
   const [ingredients, setIngredients] = React.useState([
     { id: 400, name: 'pear', expiryDate: '2022-12-05', category: 'Fruit'},
@@ -25,7 +28,17 @@ const Pantry = () => {
     <div className='flex flex-col'>
       <input type='text' placeholder='Search your pantry...' value={search} onChange={(e) => setSearch(e.target.value)} className='w-60 h-8 p-1 rounded-md bg-light self-center text-black border border-secondary m-2' />
 
-      <PantryList ingredients={ingredients.filter(ingredient => ingredient.name.includes(search))} />
+      <label className='w-60 p-1 self-center text-primary'>Category:</label>
+
+      <select name="cats" id="Category" onChange={(e) => setFilters(e.target.value)}
+        className='w-60 h-8 p-1 rounded-md bg-light self-center text-black border border-secondary m-2' >
+        <option value=''>All</option>
+        {predefinedCategories.map((cat, i) => {
+          return <option value={cat} key={i}>{cat}</option>
+        })}
+      </select>
+
+      <PantryList ingredients={ingredients.filter(ingredient => ingredient.name.includes(search) && ingredient.category.includes(filter))} />
 
       <Link to='/addPantryItem'>
         <div className="rounded-full w-14 h-14
