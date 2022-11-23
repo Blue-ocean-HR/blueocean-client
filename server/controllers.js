@@ -32,7 +32,7 @@ exports.addPantryItem = (req, res) => {
     let item = {email: "max.philip1@gmail.com", name: "chicken", date: new Date().getTime(), category: "protein"}
     axios.post('/pantry', item).then(data => console.log(data)).catch(error => console.log(error))
 */
-
+//
 exports.deletePantryItem = (req, res) => {
   axios.delete('http://localhost:8080/pantry', {data: {id: req.body.id}}).then(data => {
     res.sendStatus(200)
