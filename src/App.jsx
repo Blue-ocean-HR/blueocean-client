@@ -13,7 +13,7 @@ import Recipes from './Recipes.jsx'
 const App = () => {
 
   const location = useLocation();
-  const { isLoading, isAuthenticated } = useAuth0();
+  const { isLoading, isAuthenticated, user, context } = useAuth0();
   const [darkMode, setDarkMode] = useState('')
   // if (isLoading) {
   //   return (
@@ -25,9 +25,14 @@ const App = () => {
   const darkToggle = () => {
     darkMode === 'dark' ? setDarkMode('') : setDarkMode('dark')
   }
+  // Add user to DB if they just signed up
   useEffect(() => {
+    if (isAuthenticated) {
+      axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
+    }
     axios.get('/recipes').then(data => console.log(data)).catch(error => console.log(error))
-  }, [])
+    axios.get('/pantry', {params: {email: "max.philip1@gmail.com"}}).then(data => console.log(data)).catch(error => console.log(error))
+  }, [user])
   return (
     <div className={darkMode}>
     <div className="bg-light h-screen dark:bg-black">
