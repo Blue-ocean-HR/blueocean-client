@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquarePlus} from '@fortawesome/free-solid-svg-icons'
 import Recipe from './Recipe.jsx'
 import {motion} from 'framer-motion'
+import axios from 'axios'
 
 const Recipes = ({recipes}) => {
   const [query, setQuery] = useState('');
@@ -16,6 +17,9 @@ const Recipes = ({recipes}) => {
   var handleSearch = (e)=> {
     e.preventDefault();
     console.log(query)
+    var obj = {ingredients: query};
+    axios.get('/recipes', {params: obj})
+
   }
   var handleFavorite = (e)=> {
     e.preventDefault();
