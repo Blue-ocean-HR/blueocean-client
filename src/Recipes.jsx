@@ -4,11 +4,10 @@ import { faSquarePlus} from '@fortawesome/free-solid-svg-icons'
 import Recipe from './Recipe.jsx'
 import {motion} from 'framer-motion'
 
-const Recipes = () => {
+const Recipes = ({recipes}) => {
   const [query, setQuery] = useState('');
   const [pantry, setPantry] = useState([]);
   const [pantryItem, setPantryItem] = useState("");
-
 
   var handleInput = (e) => {
     e.preventDefault();
@@ -95,7 +94,11 @@ const Recipes = () => {
         })}
       </div>
       {/*map through the recipes*/}
-      <Recipe data={dummyData}/>
+      {recipes.map(recipe => {
+        console.log(recipe)
+        return (<Recipe recipe={recipe}/>)
+      })}
+
       </div>
       {/* FILTER DROPDOWN */}
 
