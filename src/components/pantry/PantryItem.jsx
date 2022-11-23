@@ -10,6 +10,7 @@ const PantryItem = ({ingredient}) => {
     if(name === '') {
       window.alert('invalid name');
     } else {
+      axios.put('/pantry', {name: "", date: 1234, id: 5}).then(data => console.log(data)).catch(error => console.log(error))
     // TODO: Axios update call w/ name, expiryDate, pantryID
       // axios.put(`${APIURL}/pantry`, {
       //   params: {

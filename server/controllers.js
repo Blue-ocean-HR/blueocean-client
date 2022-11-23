@@ -2,6 +2,7 @@ const axios = require("axios");
 
 // Recipe Routes
 exports.getRecipes = (req, res) => {
+  console.log(req.query)
   let dummyBody = {ingredients: ["chicken"]}
   axios.get('http://localhost:8080/recipes', {data: dummyBody}).then(recipes => {
     res.send(recipes.data)

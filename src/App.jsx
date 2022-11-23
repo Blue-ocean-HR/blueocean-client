@@ -23,19 +23,25 @@ const App = () => {
   //   );
   // }
   const darkToggle = () => {
-    darkMode === 'dark' ? setDarkMode('') : setDarkMode('dark')
+    if (darkMode === 'dark') {
+      setDarkMode('')
+      document.getElementById("html").classList.remove('dark');
+    } else {
+      setDarkMode('dark')
+      document.getElementById("html").classList.add('dark');
+    }
   }
   // Add user to DB if they just signed up
   useEffect(() => {
     if (isAuthenticated) {
       axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
     }
+    console.log(document.body)
     var dummyBody = {ingredients: ["chicken"]}
-    axios.get('/recipes').then(data => console.log(data)).catch(error => console.log(error))
+    axios.get('/recipes', {params: dummyBody}).then(data => console.log(data)).catch(error => console.log(error))
     axios.get('/pantry', {params: {email: "max.philip1@gmail.com"}}).then(data => console.log(data)).catch(error => console.log(error))
   }, [user])
   return (
-    <div className={`${darkMode} bg-light max-h-2 dark:bg-black`}>
     <div >
     <motion.div
           initial={{opacity: 0}}
@@ -53,8 +59,6 @@ const App = () => {
         </Routes>
       </AnimatePresence>
     </motion.div>
-    </div>
-    <footer className={`${darkMode} bg-light h-screen dark:bg-black`}>Some footer</footer>
     </div>
   )}
 
