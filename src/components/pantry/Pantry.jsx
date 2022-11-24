@@ -1,6 +1,6 @@
+import axios from 'axios';
 import React from 'react';
 import {Link} from 'react-router-dom';
-import axios from 'axios'
 import { useAuth0 } from "@auth0/auth0-react";
 
 import PantryList from './PantryList.jsx'
@@ -8,7 +8,8 @@ import PantryList from './PantryList.jsx'
 const predefinedCategories = ['Veggie', 'Fruit', 'Grain', 'Protein', 'Dairy', 'Other'];
 
 const Pantry = () => {
-  const {user, isAuthenticated} = useAuth0()
+  const { user } = useAuth0();
+
   const [search, setSearch] = React.useState('');
   const [filter, setFilters] = React.useState('');
 
@@ -23,13 +24,15 @@ const Pantry = () => {
   ]);
 
   React.useEffect(() => {
-    if (isAuthenticated) {
-      axios.get('/pantry', {params: {email: "max.philip1@gmail.com"}}).then(data => {
-        //  set ingredients here
-        console.log(data)
-        }).catch(error => console.log(error))
-    }
-  }, [user]);
+    axios.get(`/pantry`, {
+      params: {
+        email: user.email
+      }
+    })
+    .then(result => {
+      setIngredients(result.data);
+    });
+  }, []);
 
   return (
     <div className='flex flex-col'>

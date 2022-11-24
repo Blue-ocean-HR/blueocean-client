@@ -1,11 +1,14 @@
 import React from 'react';
 import TextInput from 'react-autocomplete-input';
 import {useNavigate} from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from 'axios';
 
 
 const predefinedCategories = ['Veggie', 'Fruit', 'Grain', 'Protein', 'Dairy', 'Other'];
 
 const AddPantryItem = (props) => {
+  const { user } = useAuth0();
 
   const [ingredientOptions, setIngredientOptions] = React.useState([{id: 2341, name: 'apple'}, {id: 5693, name: 'banana'}, {id: 8492, name: 'pear'}, {id: 9076, name: 'orange'}]);
   const [customIngredient, setCustomIngredient] = React.useState('');
@@ -39,12 +42,12 @@ const AddPantryItem = (props) => {
     } else if(!usingCustomIngredient && systemIngredient === '') {
       window.alert('invalid system ingredient');
     } else {
-      // axios.post(`${APIURL}/pantry`, {
-      //   params: {
-      //     email: 'smth idfk',
-      //     ...other stuff
-      //   }
-      // });
+      axios.post(`/pantry`, {
+        name: customIngredient,
+        date: new Date(Number(expiryDate.substr(0, 4)), Number(expiryDate.substr(5, 2)) - 1, Number(expiryDate.substr(8, 2))).getTime(),
+        category: category,
+        email: user.email
+      }).then(data => console.log(data)).catch(error => console.log(error));
       navigate('/pantry');
     }
   }
