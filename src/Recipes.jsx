@@ -16,7 +16,7 @@ const Recipes = ({recipes, getUserFavorites}) => {
   }
   var handleSearch = (e)=> {
     e.preventDefault();
-    console.log(query)
+    //console.log(query)
     var obj = {ingredients: query};
     axios.get('/recipes', {params: obj})
 
@@ -33,7 +33,7 @@ const Recipes = ({recipes, getUserFavorites}) => {
 
   var handleIngredientAdd = (e) => {
     e.preventDefault();
-    console.log(pantry, pantryItem)
+    //console.log(pantry, pantryItem)
     setPantry(old => {
       if(old.indexOf(pantryItem) !== -1) {
         return old;
@@ -92,7 +92,7 @@ const Recipes = ({recipes, getUserFavorites}) => {
       </div>
       <div className="filters">
         {pantry && pantry.map((item, i)=> {
-          console.log(item)
+          //console.log(item)
           return (<div key={i}>{item} <button onClick={()=> {
             handleRemove(item)
           }}>X</button><br/></div>)
@@ -101,7 +101,7 @@ const Recipes = ({recipes, getUserFavorites}) => {
       {/*map through the recipes*/}
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl: grid-col-4 gap-4">
       {recipes.map(recipe => {
-        console.log(recipe)
+        //console.log(recipe)
         return (<Recipe recipe={recipe}/>)
       })}
       </div>

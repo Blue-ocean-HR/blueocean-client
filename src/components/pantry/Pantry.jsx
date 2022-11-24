@@ -14,13 +14,13 @@ const Pantry = () => {
   const [filter, setFilters] = React.useState('');
 
   const [ingredients, setIngredients] = React.useState([
-    { id: 400, name: 'pear', expiryDate: '2022-12-05', category: 'Fruit'},
-    { id: 401, name: 'apple', expiryDate: '2022-12-12', category: 'Fruit'},
-    { id: 402, name: 'banana', expiryDate: '2022-12-21', category: 'Fruit'},
-    { id: 403, name: 'orange', expiryDate: '2022-11-25', category: 'Fruit'},
-    { id: 404, name: 'peach', expiryDate: '2022-11-27', category: 'Fruit'},
-    { id: 405, name: 'mango', expiryDate: '2022-11-29', category: 'Fruit'},
-    { id: 666, name: 'Eye of Newt', expiryDate: '2067-11-21', category: 'Dairy'}
+    { id: 400, pantry_ingredient: 'pear', expiryDate: '2022-12-05', category: 'Fruit'},
+    { id: 401, pantry_ingredient: 'apple', expiryDate: '2022-12-12', category: 'Fruit'},
+    { id: 402, pantry_ingredient: 'banana', expiryDate: '2022-12-21', category: 'Fruit'},
+    { id: 403, pantry_ingredient: 'orange', expiryDate: '2022-11-25', category: 'Fruit'},
+    { id: 404, pantry_ingredient: 'peach', expiryDate: '2022-11-27', category: 'Fruit'},
+    { id: 405, pantry_ingredient: 'mango', expiryDate: '2022-11-29', category: 'Fruit'},
+    { id: 666, pantry_ingredient: 'Eye of Newt', expiryDate: '2067-11-21', category: 'Dairy'}
   ]);
 
   React.useEffect(() => {
@@ -30,7 +30,8 @@ const Pantry = () => {
       }
     })
     .then(result => {
-      setIngredients(result.data);
+      console.log(result.data);
+      setIngredients(result.data.length > 0 ? result.data : []);
     });
   }, []);
 
@@ -48,7 +49,7 @@ const Pantry = () => {
         })}
       </select>
 
-      <PantryList ingredients={ingredients.filter(ingredient => ingredient.name.includes(search) && ingredient.category.includes(filter))} />
+      <PantryList ingredients={ingredients.filter(ingredient => ingredient.pantry_ingredient.includes(search) && ingredient.category.includes(filter))} />
 
       <Link to='/addPantryItem'>
         <div className="rounded-full w-14 h-14

@@ -8,7 +8,7 @@ const PantryItem = ({ingredient}) => {
 
   const [editing, setEditing] = React.useState(false);
   const [expiryDate, setExpiryDate] = React.useState(ingredient.expiryDate);
-  const [name, setName] = React.useState(ingredient.name);
+  const [name, setName] = React.useState(ingredient.pantry_ingredient);
 
   const navigate = useNavigate();
 
