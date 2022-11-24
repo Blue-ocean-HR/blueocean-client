@@ -5,7 +5,7 @@ import Recipe from './Recipe.jsx'
 import {motion} from 'framer-motion'
 import axios from 'axios'
 
-const Recipes = ({recipes}) => {
+const Recipes = ({recipes, getUserFavorites}) => {
   const [query, setQuery] = useState('');
   const [pantry, setPantry] = useState([]);
   const [pantryItem, setPantryItem] = useState("");
@@ -23,6 +23,7 @@ const Recipes = ({recipes}) => {
   }
   var handleFavorite = (e)=> {
     e.preventDefault();
+    getUserFavorites()
   }
 
   var handleIngredientSelect = (e)=> {
@@ -68,7 +69,7 @@ const Recipes = ({recipes}) => {
 
       {/*FAVORITE BUTTON*/}
       <div>
-        <button className="recipes-favorite-button" onClick={handleFavorite}>FAVORITE</button>
+        <button className="recipes-favorite-button" onClick={handleFavorite}>FAVORITES</button>
       </div>
 
       {/*SEARCH BAR*/}
@@ -98,10 +99,12 @@ const Recipes = ({recipes}) => {
         })}
       </div>
       {/*map through the recipes*/}
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl: grid-col-4 gap-4">
       {recipes.map(recipe => {
         console.log(recipe)
         return (<Recipe recipe={recipe}/>)
       })}
+      </div>
 
       </div>
       {/* FILTER DROPDOWN */}

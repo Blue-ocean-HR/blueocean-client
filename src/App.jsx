@@ -16,13 +16,19 @@ const App = () => {
   const { isLoading, isAuthenticated, user, context } = useAuth0();
   const [darkMode, setDarkMode] = useState('')
   const [recipes, setRecipes] = useState(null);
-  // if (isLoading) {
-  //   return (
-  //     <div className="page-layout">
-  //       <PageLoader />
-  //     </div>
-  //   );
-  // }
+
+  const getUserFavorites = () => {
+    axios.get('/favorite', {params: {email: user.email}}).then(favorites => console.log(favorites)).catch(error => console.log(error))
+  }
+
+  const toggleFavorite = (fav, recipeId) => {
+    if (fav) {
+      axios.delete('/favorite', {params: {email: user.email, recipe_id: recipeId}})
+    } else {
+      axios.post('/favorite', {email: user.email, recipe_id: recipeId})
+    }
+  }
+
   const darkToggle = () => {
     if (darkMode === 'dark') {
       setDarkMode('')
@@ -38,7 +44,7 @@ const App = () => {
       axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
     }
     var dummyBody = {ingredients: ["chicken"]}
-    axios.get('/recipes', {params: dummyBody}).then(data => console.log(data)).catch(error => console.log(error))
+    axios.get('/recipes', {params: dummyBody}).then(val => setRecipes(val.data)).catch(error => console.log(error))
     axios.get('/pantry', {params: {email: "max.philip1@gmail.com"}}).then(data => console.log(data)).catch(error => console.log(error))
   }, [user])
   return (
@@ -52,9 +58,9 @@ const App = () => {
       <AnimatePresence>
         <Routes location={location}>
           {isAuthenticated ? <Route path='/account' element={<Account />} /> : null}
-          <Route path="/:recipeId" element={<RecipeFull />} />
+          <Route path="/recipe/:recipeId" element={<RecipeFull toggleFavorite={toggleFavorite} />} />
           <Route path="/addPantryItem" element={<AddPantryItem />} />
-          <Route path="/" element={recipes && <Recipes recipes={recipes} />} />
+          <Route path="/" element={recipes && <Recipes recipes={recipes} getUserFavorites={getUserFavorites}/>} />
           <Route path="/pantry" element={<Pantry />} />
         </Routes>
       </AnimatePresence>

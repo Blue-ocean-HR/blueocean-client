@@ -6,24 +6,26 @@ import {Link} from 'react-router-dom'
 
 export default function Recipe({recipe}) {
   return (
-    <div className="flex justify-center items-center mt-10">
-    <div className=" card">
-      <div className="card-header p-2">
-        <div className="profile">
-          <span className="letter">{""}</span>
-        </div>
-        <div className="card-title-group">
-          <h5 className="card-title">{recipe.title}</h5>
-          <div className="card-date">{Date()}</div>
+    //  <div className="grid grid-cols-3 gap-4 mr-10 mb-10 max-w-md min-w-md">
+    //     <div className="flex-wrap col-span-2 row-span-2">{recipe.title}</div>
+    //     <div>Star</div>
+    //     <div className="col-span-3">Image</div>
+    //     <div>01</div>
+    //     <div>01</div>
+
+     <div classNameName=" card">
+      <div classNameName="card-header p-2 self-end">
+        <div classNameName="card-title-group self-end">
+          <h5 classNameName="card-title ">{recipe.title}</h5>
+          <div classNameName="card-date">{Date()}</div>
         </div>
       </div>
-      {/* Add recipe_id to link */}
-      <div className="p-2">
-      <Link to={`/${1234}`}>
-      <img className="card-image" src={food} alt="Logo" />
+      <div classNameName="p-2">
+      <Link to={`/recipe/${recipe.recipe_id}`} state={{ recipe: recipe }}>
+      <img classNameName="card-image" src={food} alt="Logo" />
       </Link>
       </div>
-      <div className="card-text">
+      <div classNameName="card-text">
         <strong>Steps:</strong>
         <ol>
         {recipe.steps.map(step => {
@@ -37,17 +39,17 @@ export default function Recipe({recipe}) {
         })}
         </ul>
       </div>
-      <div className="card-like-bar p-2">
+      <div classNameName="card-like-bar p-2">
         {false ? (
-          <img className="card-like-icon" src={heartFill} alt="Logo" />
+          <img classNameName="card-like-icon" src={heartFill} alt="Logo" />
         ) : (
-          <img className="card-like-icon" src={heartOutline} alt="Logo" />
+          <img classNameName="card-like-icon" src={heartOutline} alt="Logo" />
         )}
-        <div className="like-text">
+        <div classNameName="like-text">
           <b>{"7"}</b> people like this.
         </div>
       </div>
     </div>
-    </div>
+          // </div>
   );
 }
