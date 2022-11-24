@@ -10,7 +10,7 @@ const predefinedCategories = ['Veggie', 'Fruit', 'Grain', 'Protein', 'Dairy', 'O
 const AddPantryItem = (props) => {
   const { user } = useAuth0();
 
-  const [ingredientOptions, setIngredientOptions] = React.useState([{id: 2341, name: 'apple'}, {id: 5693, name: 'banana'}, {id: 8492, name: 'pear'}, {id: 9076, name: 'orange'}]);
+  const [ingredientOptions, setIngredientOptions] = React.useState([{id: 2341, ingredients_name: 'apple'}, {id: 5693, ingredients_name: 'banana'}, {id: 8492, ingredients_name: 'pear'}, {id: 9076, ingredients_name: 'orange'}]);
   const [customIngredient, setCustomIngredient] = React.useState('');
   const [usingCustomIngredient, setUsingCustomIngredient] = React.useState(false);
   const [expiryDate, setExpiryDate] = React.useState('2022-11-21');
@@ -24,14 +24,10 @@ const AddPantryItem = (props) => {
   React.useEffect(() => {
     // TODO: get email from Auth0
     // TODO: get ingredientOptions from server
-    // axios.get(`${APIURL}/getIngredients`, {
-    //   params: {
-    //     email: 'smth idfk'
-    //   }
-    // })
-    // .then(result => {
-    //   console.log(result.rows);
-    // });
+    axios.get(`/ingredients`)
+    .then(result => {
+      setIngredientOptions(result.data);
+    });
   }, []);
 
   function handleSubmit(e) {
@@ -43,19 +39,13 @@ const AddPantryItem = (props) => {
       window.alert('invalid system ingredient');
     } else {
       axios.post(`/pantry`, {
-        name: customIngredient,
+        name: (usingCustomIngredient ? customIngredient : systemIngredient),
         date: new Date(Number(expiryDate.substr(0, 4)), Number(expiryDate.substr(5, 2)) - 1, Number(expiryDate.substr(8, 2))).getTime(),
         category: category,
         email: user.email
       }).then(data => console.log(data)).catch(error => console.log(error));
       navigate('/pantry');
     }
-  }
-
-  function handleSystemIngredientChange(string) {
-    const index = ingredientOptions.map(i => i.name).indexOf(string);
-    const id = ingredientOptions[index].id;
-    setSystemIngredient(id);
   }
 
   return (
@@ -65,8 +55,8 @@ const AddPantryItem = (props) => {
         System Ingredient:
       </label>
       <TextInput
-        options={ingredientOptions.map(i => i.name)} trigger={''} spacer={''} component={'text'}
-        disabled={usingCustomIngredient} matchAny={true} maxOptions={25} onSelect={handleSystemIngredientChange}
+        options={ingredientOptions.map(i => i.ingredients_name)} trigger={''} spacer={''} component={'text'}
+        disabled={usingCustomIngredient} matchAny={true} maxOptions={25} onSelect={(s) => setSystemIngredient(string)}
         className='w-60 h-6 p-2 rounded-md' />
       <label className='flex gap-2'>
         <input type='radio' name='ingredientType' onClick={() => setUsingCustomIngredient(true)} />

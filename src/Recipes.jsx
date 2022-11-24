@@ -16,7 +16,7 @@ const Recipes = ({recipes}) => {
   }
   var handleSearch = (e)=> {
     e.preventDefault();
-    console.log(query)
+    //console.log(query)
     var obj = {ingredients: query};
     axios.get('/recipes', {params: obj})
 
@@ -32,7 +32,7 @@ const Recipes = ({recipes}) => {
 
   var handleIngredientAdd = (e) => {
     e.preventDefault();
-    console.log(pantry, pantryItem)
+    //console.log(pantry, pantryItem)
     setPantry(old => {
       if(old.indexOf(pantryItem) !== -1) {
         return old;
@@ -91,7 +91,7 @@ const Recipes = ({recipes}) => {
       </div>
       <div className="filters">
         {pantry && pantry.map((item, i)=> {
-          console.log(item)
+          //console.log(item)
           return (<div key={i}>{item} <button onClick={()=> {
             handleRemove(item)
           }}>X</button><br/></div>)
@@ -99,7 +99,7 @@ const Recipes = ({recipes}) => {
       </div>
       {/*map through the recipes*/}
       {recipes.map(recipe => {
-        console.log(recipe)
+        //console.log(recipe)
         return (<Recipe recipe={recipe}/>)
       })}
 

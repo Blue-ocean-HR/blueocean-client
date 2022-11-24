@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require('path');
 const { getRecipes, addUser, addPantryItem,
-   deletePantryItem, updatePantryItem, getPantryItems } = require("./controllers.js")
+   deletePantryItem, updatePantryItem, getPantryItems, getIngredients } = require("./controllers.js")
 
 const PORT = process.env.PORT || 3001;
 
@@ -23,6 +23,9 @@ app.get('/pantry', getPantryItems)
 app.post('/pantry', addPantryItem)
 app.delete('/pantry', deletePantryItem)
 app.put('/pantry', updatePantryItem)
+
+// Ingredients
+app.get('/ingredients', getIngredients)
 
 
 // direct all requested routes to index.html to let react router handle them
