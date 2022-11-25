@@ -5,7 +5,7 @@ import Recipe from './Recipe.jsx'
 import {motion} from 'framer-motion'
 import axios from 'axios'
 
-const Recipes = ({recipes, getUserFavorites}) => {
+const Recipes = ({recipes, getUserFavorites, toggleFavorite}) => {
   const [query, setQuery] = useState('');
   const [pantry, setPantry] = useState([]);
   const [pantryItem, setPantryItem] = useState("");
@@ -118,7 +118,7 @@ const Recipes = ({recipes, getUserFavorites}) => {
       <div className="flex flex-wrap justify-center gap-4">
       {recipes.map(recipe => {
         //console.log(recipe)
-        return (<Recipe recipe={recipe}/>)
+        return (<Recipe recipe={recipe} toggleFavorite={toggleFavorite}/>)
       })}
       </div>
 

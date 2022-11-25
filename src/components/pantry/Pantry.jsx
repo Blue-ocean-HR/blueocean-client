@@ -8,7 +8,7 @@ import PantryList from './PantryList.jsx'
 const predefinedCategories = ['Veggie', 'Fruit', 'Grain', 'Protein', 'Dairy', 'Other'];
 
 const Pantry = () => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   const [search, setSearch] = React.useState('');
   const [filter, setFilters] = React.useState('');
@@ -25,6 +25,7 @@ const Pantry = () => {
 
   React.useEffect(() => {
     console.log('triggered')
+    if (isAuthenticated) {
     axios.get(`/pantry`, {
       params: {
         email: user.email
@@ -34,6 +35,7 @@ const Pantry = () => {
       console.log(result.data);
       setIngredients(result.data.length > 0 ? result.data : []);
     }).catch(error => console.log(error))
+  }
   }, [user]);
 
   return (
