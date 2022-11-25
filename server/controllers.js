@@ -34,6 +34,7 @@ exports.addPantryItem = (req, res) => {
 */
 //
 exports.deletePantryItem = (req, res) => {
+  console.log(req.body)
   axios.delete('http://localhost:8080/pantry', {data: {id: req.body.id}}).then(data => {
     res.sendStatus(200)
   }).catch(error => {

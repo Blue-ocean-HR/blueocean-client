@@ -29,9 +29,7 @@ const PantryItem = ({ingredient}) => {
 
   function handleDelete() {
   // TODO: Axios delete call w/ Email & Pantry Item ID (ingredient.id)
-    axios.delete(`/pantry`, {
-      id: ingredient.id
-    });
+    axios.delete(`/pantry`, {data: {id: ingredient.id}});
     navigate('/pantry');
   }
 

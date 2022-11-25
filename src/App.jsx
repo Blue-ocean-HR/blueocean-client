@@ -65,7 +65,7 @@ const App = () => {
           {isAuthenticated ? <Route path='/account' element={<Account />} /> : null}
           <Route path="/:recipeId" element={<RecipeFull toggleFavorite={toggleFavorite} />} />
           <Route path="/addPantryItem" element={<AddPantryItem />} />
-          <Route path="/" element={recipes && <Recipes recipes={recipes} getUserFavorites={getUserFavorites}/>} />
+          <Route path="/" element={recipes && <Recipes recipes={recipes} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>} />
           <Route path="/pantry" element={<Pantry />} />
         </Routes>
       </AnimatePresence>
