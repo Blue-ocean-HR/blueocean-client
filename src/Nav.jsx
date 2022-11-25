@@ -55,7 +55,7 @@ const Nav = ({darkToggle}) => {
           <div className="hidden md:block">
           <DarkButton darkToggle={darkToggle} />
           </div>
-          {isAuthenticated ? <Link to='/account'><div className=" hover:text-gray-900">Account</div></Link>  :
+          {isAuthenticated ? <Link to='/account'><div className=" mr-3 hover:text-gray-900">Account</div></Link>  :
            <NavBarButtons />}
           </div>
 

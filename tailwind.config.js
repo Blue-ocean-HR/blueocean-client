@@ -14,9 +14,9 @@ module.exports = {
         'primary':'#94B49F',
         'secondary': '#CEE5D0',
         'light': '#FCF8E8',
-        'accent': '#ECB390'
+        'accent': '#AC541D',
+        'button-accent': '#ECB390'
       }
     },
   },
-  plugins: [],
 }

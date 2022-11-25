@@ -18,11 +18,14 @@ const App = () => {
   const [recipes, setRecipes] = useState(null);
 
   const getUserFavorites = () => {
-    axios.get('/favorite', {params: {email: user.email}}).then(favorites => console.log(favorites)).catch(error => console.log(error))
+    axios.get('/favorite', {params: {email: user.email}}).then(favorites => {
+      console.log(favorites)
+      setRecipes(favorites.data)
+    }).catch(error => console.log(error))
   }
 
   const toggleFavorite = (fav, recipeId) => {
-    if (fav) {
+    if (!fav) {
       axios.delete('/favorite', {params: {email: user.email, recipe_id: recipeId}})
     } else {
       axios.post('/favorite', {email: user.email, recipe_id: recipeId})
@@ -44,8 +47,10 @@ const App = () => {
       axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
     }
     var dummyBody = {ingredients: ["chicken"]}
-    axios.get('/recipes', {params: dummyBody}).then(val => setRecipes(val.data)).catch(error => console.log(error))
-    axios.get('/pantry', {params: {email: "max.philip1@gmail.com"}}).then(data => console.log(data)).catch(error => console.log(error))
+    axios.get('/recipes', {params: dummyBody}).then(val => {
+      console.log(val.data)
+      setRecipes(val.data)}
+      ).catch(error => console.log(error))
   }, [user])
   return (
     <div >
@@ -58,7 +63,7 @@ const App = () => {
       <AnimatePresence>
         <Routes location={location}>
           {isAuthenticated ? <Route path='/account' element={<Account />} /> : null}
-          <Route path="/recipe/:recipeId" element={<RecipeFull toggleFavorite={toggleFavorite} />} />
+          <Route path="/:recipeId" element={<RecipeFull toggleFavorite={toggleFavorite} />} />
           <Route path="/addPantryItem" element={<AddPantryItem />} />
           <Route path="/" element={recipes && <Recipes recipes={recipes} getUserFavorites={getUserFavorites}/>} />
           <Route path="/pantry" element={<Pantry />} />
