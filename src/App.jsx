@@ -14,30 +14,46 @@ const App = () => {
 
   const location = useLocation();
   const { isLoading, isAuthenticated, user, context } = useAuth0();
-  const [darkMode, setDarkMode] = useState('');
+  const [darkMode, setDarkMode] = useState('')
   const [recipes, setRecipes] = useState(null);
-  // if (isLoading) {
-  //   return (
-  //     <div className="page-layout">
-  //       <PageLoader />
-  //     </div>
-  //   );
-  // }
+
+  const getUserFavorites = () => {
+    axios.get('/favorite', {params: {email: user.email}}).then(favorites => {
+      console.log(favorites)
+      setRecipes(favorites.data)
+    }).catch(error => console.log(error))
+  }
+
+  const toggleFavorite = (fav, recipeId) => {
+    if (!fav) {
+      axios.delete('/favorite', {params: {email: user.email, recipe_id: recipeId}})
+    } else {
+      axios.post('/favorite', {email: user.email, recipe_id: recipeId})
+    }
+  }
+
   const darkToggle = () => {
-    darkMode === 'dark' ? setDarkMode('') : setDarkMode('dark')
+    if (darkMode === 'dark') {
+      setDarkMode('')
+      document.getElementById("html").classList.remove('dark');
+    } else {
+      setDarkMode('dark')
+      document.getElementById("html").classList.add('dark');
+    }
   }
   // Add user to DB if they just signed up
   useEffect(() => {
     if (isAuthenticated) {
-      // axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
+      axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
     }
-
-    axios.get('/recipes').then(val => setRecipes(val.data)).catch(error => console.log(error))
-    // axios.get('/pantry', {params: {email: "max.philip1@gmail.com"}}).then(data => console.log(data)).catch(error => console.log(error))
+    var dummyBody = {ingredients: ["chicken"]}
+    axios.get('/recipes', {params: dummyBody}).then(val => {
+      console.log(val.data)
+      setRecipes(val.data)}
+      ).catch(error => console.log(error))
   }, [user])
   return (
-    <div className={darkMode}>
-    <div className="bg-light h-screen dark:bg-black">
+    <div >
     <motion.div
           initial={{opacity: 0}}
           animate={{opacity: 1}}
@@ -47,14 +63,13 @@ const App = () => {
       <AnimatePresence>
         <Routes location={location}>
           {isAuthenticated ? <Route path='/account' element={<Account />} /> : null}
-          <Route path="/:recipeId" element={<RecipeFull />} />
+          <Route path="/:recipeId" element={<RecipeFull toggleFavorite={toggleFavorite} />} />
           <Route path="/addPantryItem" element={<AddPantryItem />} />
-          <Route path="/" element={recipes && <Recipes recipes={recipes}/>} />
+          <Route path="/" element={recipes && <Recipes recipes={recipes} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>} />
           <Route path="/pantry" element={<Pantry />} />
         </Routes>
       </AnimatePresence>
     </motion.div>
-    </div>
     </div>
   )}
 

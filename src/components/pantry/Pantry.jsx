@@ -8,7 +8,7 @@ import PantryList from './PantryList.jsx'
 const predefinedCategories = ['Veggie', 'Fruit', 'Grain', 'Protein', 'Dairy', 'Other'];
 
 const Pantry = () => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   const [search, setSearch] = React.useState('');
   const [filter, setFilters] = React.useState('');
@@ -24,6 +24,8 @@ const Pantry = () => {
   ]);
 
   React.useEffect(() => {
+    console.log('triggered')
+    if (isAuthenticated) {
     axios.get(`/pantry`, {
       params: {
         email: user.email
@@ -32,8 +34,9 @@ const Pantry = () => {
     .then(result => {
       console.log(result.data);
       setIngredients(result.data.length > 0 ? result.data : []);
-    });
-  }, []);
+    }).catch(error => console.log(error))
+  }
+  }, [user]);
 
   return (
     <div className='flex flex-col'>
@@ -48,9 +51,9 @@ const Pantry = () => {
           return <option value={cat} key={i}>{cat}</option>
         })}
       </select>
-
+      <div className="flex items-center justify-center">
       <PantryList ingredients={ingredients.filter(ingredient => ingredient.pantry_ingredient.includes(search) && ingredient.category.includes(filter))} />
-
+      </div>
       <Link to='/addPantryItem'>
         <div className="rounded-full w-14 h-14
                         flex items-center justify-center
