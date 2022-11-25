@@ -5,7 +5,8 @@ import Pantry from './components/pantry/Pantry.jsx'
 import Account from './components/Account.jsx'
 import RecipeFull from './components/RecipeFull.jsx'
 import AddPantryItem from './components/addPantryItem/addPantryItem.jsx';
-import Nav from './Nav.jsx'
+import About from './components/About.jsx';
+import Nav from './Nav.jsx';
 
 import {Routes, Route, Link, useLocation} from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
@@ -67,6 +68,7 @@ const App = () => {
           <Route path="/addPantryItem" element={<AddPantryItem />} />
           <Route path="/" element={recipes && <Recipes recipes={recipes} getUserFavorites={getUserFavorites}/>} />
           <Route path="/pantry" element={<Pantry />} />
+          <Route path="/about" element={<About />}/>
         </Routes>
       </AnimatePresence>
     </motion.div>

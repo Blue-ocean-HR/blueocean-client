@@ -3,7 +3,7 @@ const axios = require("axios");
 // Recipe Routes
 exports.getRecipes = (req, res) => {
   let dummyBody = {ingredients: ["egg"]}
-  axios.get('http://localhost:8080/recipes', {data: dummyBody}).then(recipes => {
+  axios.get('http://localhost:3000/recipes', {data: dummyBody}).then(recipes => {
     res.send(recipes.data)
   }).catch(error => console.log(error))
 }
@@ -11,7 +11,7 @@ exports.getRecipes = (req, res) => {
 
 // User routes
 exports.addUser = (req, res) => {
-  axios.post('http://localhost:8080/users', {email: req.body.email}).then(data => {
+  axios.post('http://localhost:3000/users', {email: req.body.email}).then(data => {
     res.sendStatus(200)
   }).catch(error => {
     res.sendStatus(500)
@@ -21,7 +21,7 @@ exports.addUser = (req, res) => {
 
 // Pantry Routes
 exports.addPantryItem = (req, res) => {
-  axios.post('http://localhost:8080/pantry', req.body).then(data => {
+  axios.post('http://localhost:3000/pantry', req.body).then(data => {
     res.sendStatus(200)
   }).catch(error => {
     res.sendStatus(500)
@@ -34,7 +34,7 @@ exports.addPantryItem = (req, res) => {
 */
 //
 exports.deletePantryItem = (req, res) => {
-  axios.delete('http://localhost:8080/pantry', {data: {id: req.body.id}}).then(data => {
+  axios.delete('http://localhost:3000/pantry', {data: {id: req.body.id}}).then(data => {
     res.sendStatus(200)
   }).catch(error => {
     res.sendStatus(500)
@@ -45,7 +45,7 @@ exports.deletePantryItem = (req, res) => {
 //  axios.delete('/pantry', {data: {id: 4}}).then(data => console.log(data)).catch(error => console.log(error))
 
 exports.updatePantryItem = (req, res) => {
-  axios.put('http://localhost:8080/pantry', req.body).then(data => {
+  axios.put('http://localhost:3000/pantry', req.body).then(data => {
     res.sendStatus(200)
   }).catch(error => {
     res.sendStatus(500)
@@ -57,7 +57,7 @@ exports.updatePantryItem = (req, res) => {
 
 exports.getPantryItems = (req, res) => {
   console.log('pantry', req.query)
-  axios.get('http://localhost:8080/pantry', {params: req.query}).then(data => {
+  axios.get('http://localhost:3000/pantry', {params: req.query}).then(data => {
     res.send(data.data)
   }).catch(error => {
     res.sendStatus(500)
@@ -68,7 +68,7 @@ exports.getPantryItems = (req, res) => {
 // axios.get('/pantry', {params: {email: "max.philip1@gmail.com"}}).then(data => console.log(data)).catch(error => console.log(error))
 
 exports.getFavorites = (req, res) => {
-  axios.get('http://localhost:8080/favorite', {params: {email: req.query.email}}).then(favorites => {
+  axios.get('http://localhost:3000/favorite', {params: {email: req.query.email}}).then(favorites => {
     res.send(favorites.data)
   }).catch(error => {
     res.sendStatus(500)
@@ -78,7 +78,7 @@ exports.getFavorites = (req, res) => {
 
 exports.deleteFavorite = (req, res) => {
   console.log('delete', req.query)
-  axios.delete('http://localhost:8080/favorite', {data: req.query}).then(data => {
+  axios.delete('http://localhost:3000/favorite', {data: req.query}).then(data => {
     res.sendStatus(200)
   }).catch(error => {
     res.sendStatus(500)
@@ -88,7 +88,7 @@ exports.deleteFavorite = (req, res) => {
 
 exports.addFavorite = (req, res) => {
   console.log(req.body)
-  axios.post('http://localhost:8080/favorite', req.body).then(data => {
+  axios.post('http://localhost:3000/favorite', req.body).then(data => {
     res.sendStatus(200)
   }).catch(error => {
     res.sendStatus(500)
@@ -97,7 +97,7 @@ exports.addFavorite = (req, res) => {
 }
 
 exports.getIngredients = (req, res) => {
-  axios.get('http://localhost:8080/ingredients').then(data => {
+  axios.get('http://localhost:3000/ingredients').then(data => {
     res.send(data.data)
   }).catch(error => {
     res.sendStatus(500)
