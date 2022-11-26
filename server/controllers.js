@@ -7,16 +7,17 @@ exports.getRecipes = (req, res) => {
     let recipesArr = recipes.data;
     let promises = []
     // let result = await Promise.all(
-      recipesArr.map(recipe => {
-        promises.push(axios.get(`https://api.unsplash.com/search/photos?page=1&query=${recipe.title + ' meal'}&client_id=Jw8aHDiAzilA3nvdb3mvVeEtcXcLaVeNi3chvuBz-0g`))
-      })
-      Promise.all(promises).then(data => {
-        for (let i = 0; i < recipesArr.length; i++) {
-          recipesArr[i].url = data[i].data.results[0].urls.small
-        }
-        console.log(recipesArr)
-        res.send(recipesArr)
-      })
+      // recipesArr.map(recipe => {
+      //   promises.push(axios.get(`https://api.unsplash.com/search/photos?page=1&query=${recipe.title + ' meal'}&client_id=Jw8aHDiAzilA3nvdb3mvVeEtcXcLaVeNi3chvuBz-0g`))
+      // })
+      // Promise.all(promises).then(data => {
+      //   for (let i = 0; i < recipesArr.length; i++) {
+      //     recipesArr[i].url = data[i].data.results[0].urls.small
+      //   }
+      //   console.log(recipesArr)
+      //   res.send(recipesArr)
+      // })
+      res.send(recipesArr)
     // res.send(recipes.data)
   }).catch(error => console.log(error))
 }
