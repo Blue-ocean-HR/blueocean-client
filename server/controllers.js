@@ -2,11 +2,35 @@ const axios = require("axios");
 
 // Recipe Routes
 exports.getRecipes = (req, res) => {
-  let dummyBody = {ingredients: ["egg"]}
-  axios.get('http://localhost:8080/recipes', {data: dummyBody}).then(recipes => {
-    res.send(recipes.data)
+  let dummyBody = {ingredients: ["chicken"]}
+  axios.get('http://localhost:8080/recipes', {data: dummyBody}).then(async (recipes) => {
+    let recipesArr = recipes.data;
+    let promises = []
+    // let result = await Promise.all(
+      recipesArr.map(recipe => {
+        promises.push(axios.get(`https://api.unsplash.com/search/photos?page=1&query=${recipe.title + ' meal'}&client_id=Jw8aHDiAzilA3nvdb3mvVeEtcXcLaVeNi3chvuBz-0g`))
+      })
+      Promise.all(promises).then(data => {
+        for (let i = 0; i < recipesArr.length; i++) {
+          recipesArr[i].url = data[i].data.results[0].urls.small
+        }
+        console.log(recipesArr)
+        res.send(recipesArr)
+      })
+    // res.send(recipes.data)
   }).catch(error => console.log(error))
 }
+
+// const getPictures = async (arr) => {
+//   await for (let i = 0; i < arr.length; i++) {
+//     console.log('test', arr[i].title)
+//     axios.get(`https://api.unsplash.com/search/photos?page=1&query=${arr[i].title}&client_id=Jw8aHDiAzilA3nvdb3mvVeEtcXcLaVeNi3chvuBz-0g`).then(pictures => {
+//       console.log(pictures.data.results[0].urls.full)
+//     }).catch(error => console.log(error))
+//   }
+//   return arr;
+// }
+
 
 
 // User routes
