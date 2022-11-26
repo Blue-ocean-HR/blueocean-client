@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently npm:watch:*",
+    "build": "webpack --mode production",
     "watch:compile": "webpack --mode development --watch",
-    "watch:serve": "nodemon server/server.js",
-    "build": "webpack"
+    "watch:serve": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
