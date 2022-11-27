@@ -142,8 +142,6 @@ const Recipes = ({recipes, setRecipes, ingredients, getUserFavorites, toggleFavo
       }): (<div>NO RESULTS FOUND</div>)}
       </div>
       </div>
-      ) : <div>No favorites</div>}
-      </div>
 
       {/* FILTER DROPDOWN */}
 
