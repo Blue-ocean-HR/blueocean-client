@@ -4,7 +4,7 @@ const axios = require("axios");
 exports.getRecipes = (req, res) => {
   let dummyBody = {ingredients: ["egg"]}
   console.log('recipes query', req.query)
-  axios.get('http://localhost:8080/recipes', {data: dummyBody}).then(async (recipes) => {
+  axios.get('http://localhost:8080/recipes', {data: dummyBody, params: {email: "max.philip1@gmail.com"}}).then(async (recipes) => {
     let recipesArr = recipes.data;
     let promises = []
       // recipesArr.map(recipe => {

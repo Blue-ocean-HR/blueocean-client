@@ -52,13 +52,22 @@ const App = () => {
   // Add user to DB if they just signed up
   useEffect(() => {
     if (isAuthenticated) {
+      console.log('user fetch')
       axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
+      var dummyBody = { ingredients: ["chicken"], email: user.email}
+      axios.get('/recipes', {params: dummyBody}).then(val => {
+        console.log(val.data)
+        setRecipes(val.data)}
+        ).catch(error => console.log(error))
+    } else {
+      var dummyBody = { ingredients: ["chicken"]}
+      axios.get('/recipes', {params: dummyBody}).then(val => {
+        console.log(val.data)
+        setRecipes(val.data)}
+        ).catch(error => console.log(error))
     }
-    var dummyBody = { ingredients: ["chicken"]}
-    axios.get('/recipes', {params: dummyBody}).then(val => {
-      console.log(val.data)
-      setRecipes(val.data)}
-      ).catch(error => console.log(error))
+
+
   }, [user])
   return (
     <div >
