@@ -5,11 +5,16 @@ import {LogoutButton} from './logout-button.jsx'
 
 const Account = () => {
   const {user} = useAuth0()
+  const profilePic = "https://upload.wikimedia.org/wikipedia/commons/b/bd/Kawaii_earth_clipart.svg"
   return (
-    <div>
-      <div>Profile Picture</div>
+    <div className="flex justify-center">
+    <div className="bg-white rounded-sm overflow-hidden border-l-2">
+      <div className="bg-slate-400 " >
+        <img src={profilePic}></img>
+      </div>
       <div>Email: {user.email}</div>
       <LogoutButton />
+    </div>
     </div>
   )
 }
