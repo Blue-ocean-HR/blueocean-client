@@ -56,7 +56,7 @@ const AddPantryItem = (props) => {
       </label>
       <TextInput
         options={ingredientOptions.map(i => i.ingredients_name)} trigger={''} spacer={''} component={'text'}
-        disabled={false} matchAny={true} maxOptions={25} onChange={(string) => {
+        disabled={usingCustomIngredient} matchAny={true} maxOptions={25} onChange={(string) => {
           console.log(string)
           setSystemIngredient(string)}
         }
