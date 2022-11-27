@@ -54,7 +54,7 @@ const App = () => {
     if (isAuthenticated) {
       axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
     }
-    var dummyBody = {ingredients: ["chicken"]}
+    var dummyBody = { ingredients: ["chicken"]}
     axios.get('/recipes', {params: dummyBody}).then(val => {
       console.log(val.data)
       setRecipes(val.data)}

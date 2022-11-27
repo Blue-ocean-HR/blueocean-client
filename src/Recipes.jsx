@@ -117,14 +117,17 @@ const Recipes = ({recipes, getUserFavorites, toggleFavorite}) => {
       </div>
       {/*map through the recipes*/}
       {recipes !== 'no results' ? (
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex justify-center">
+      <div className="flex flex-wrap justify-center gap-4 items-center lg:w-5/6">
       {recipes.map(recipe => {
         //console.log(recipe)
         return (<Recipe recipe={recipe} toggleFavorite={toggleFavorite}/>)
       })}
       </div>
+      </div>
       ) : <div>No favorites</div>}
       </div>
+
       {/* FILTER DROPDOWN */}
 
 
