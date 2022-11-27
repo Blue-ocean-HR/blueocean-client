@@ -22,7 +22,7 @@ export default function Recipe({recipe, toggleFavorite}) {
       </div>
       <div className="flex items-center justify-center p-2">
       <Link to={`/${recipe.recipe_id}`} state={{ recipe: recipe }}>
-      <img className="card-image" src={food} alt="Logo" />
+      <img className="card-image" src={recipe.url} alt="Logo" />
       </Link>
       </div>
       <div className="m-3" onClick={handleAccordion}>
