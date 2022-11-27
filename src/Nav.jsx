@@ -5,7 +5,7 @@ import DarkButton from './components/DarkButton.jsx'
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-const Nav = ({darkToggle}) => {
+const Nav = ({darkToggle, recipeHomePageRender}) => {
   const {isAuthenticated, user} = useAuth0()
   const [mobileToggle, setMobileToggle] = React.useState("hidden")
 

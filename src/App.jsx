@@ -58,8 +58,8 @@ const App = () => {
       document.getElementById("html").classList.add('dark');
     }
   }
-  // Add user to DB if they just signed up
-  useEffect(() => {
+
+  const recipeHomePageRender = () => {
     if (isAuthenticated) {
       console.log('user fetch')
       axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
@@ -68,6 +68,15 @@ const App = () => {
         console.log(val.data)
         setRecipes(val.data)}
         ).catch(error => console.log(error))
+        axios.get(`/pantry`, {
+          params: {
+            email: user.email
+          }
+        })
+        .then(result => {
+          console.log(result.data);
+          setIngredients(result.data.length > 0 ? result.data : []);
+        }).catch(error => console.log(error))
     } else {
       var dummyBody = { ingredients: ["chicken"]}
       axios.get('/recipes', {params: dummyBody}).then(val => {
@@ -75,10 +84,10 @@ const App = () => {
         setRecipes(val.data)}
         ).catch(error => console.log(error))
     }
-    var dummyBody = {ingredients: ["chicken"]}
-    axios.get('/recipes', {params: dummyBody}).then(val => {
-      setRecipes(val.data)}
-      ).catch(error => console.log(error))
+  }
+  // Add user to DB if they just signed up
+  useEffect(() => {
+    recipeHomePageRender()
   }, [user])
   return (
     <div >
@@ -87,7 +96,7 @@ const App = () => {
           animate={{opacity: 1}}
           exit={{opacity: 0}}
           >
-      <Nav darkToggle={darkToggle}/>
+      <Nav darkToggle={darkToggle} recipeHomePageRender={recipeHomePageRender}/>
       <AnimatePresence>
         <Routes location={location}>
           {isAuthenticated ? <Route path='/account' element={<Account />} /> : null}
