@@ -2,22 +2,9 @@ const axios = require("axios");
 
 // Recipe Routes
 exports.getRecipes = (req, res) => {
-  let dummyBody = {ingredients: ["egg"]}
-  console.log('recipes query', req.query)
-  axios.get('http://localhost:8080/recipes', {data: dummyBody, params: {email: "max.philip1@gmail.com"}}).then(async (recipes) => {
-    let recipesArr = recipes.data;
-    let promises = []
-      recipesArr.map(recipe => {
-        promises.push(axios.get(`https://api.unsplash.com/search/photos?page=1&query=${recipe.title + ' meal'}&client_id=Jw8aHDiAzilA3nvdb3mvVeEtcXcLaVeNi3chvuBz-0g`))
-      })
-      Promise.all(promises).then(data => {
-        for (let i = 0; i < recipesArr.length; i++) {
-          recipesArr[i].url = data[i].data.results[0].urls.small
-        }
-        console.log(recipesArr)
-        res.send(recipesArr)
-      })
-      // res.send(recipesArr)
+  let bodyArr = req.query.ingredients || "";
+  axios.get('http://localhost:8080/recipes', {data: {ingredients: bodyArr}}).then(recipes => {
+    res.send(recipes.data)
   }).catch(error => console.log(error))
 }
 
