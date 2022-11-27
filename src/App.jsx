@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import {AnimatePresence, motion } from 'framer-motion'
-import Pantry from './components/pantry/Pantry.jsx'
+import Pantry, {PantryContext} from './components/pantry/Pantry.jsx'
 import Account from './components/Account.jsx'
 import RecipeFull from './components/RecipeFull.jsx'
 import AddPantryItem from './components/addPantryItem/addPantryItem.jsx';
@@ -15,7 +15,16 @@ const App = () => {
   const location = useLocation();
   const { isLoading, isAuthenticated, user, context } = useAuth0();
   const [darkMode, setDarkMode] = useState('')
-  const [recipes, setRecipes] = useState(null);
+  const [recipes, setRecipes] = useState([]);
+  const [ingredients, setIngredients] = useState([
+    { id: 400, pantry_ingredient: 'pear', expiryDate: '2022-12-05', category: 'Fruit'},
+    { id: 401, pantry_ingredient: 'apple', expiryDate: '2022-12-12', category: 'Fruit'},
+    { id: 402, pantry_ingredient: 'banana', expiryDate: '2022-12-21', category: 'Fruit'},
+    { id: 403, pantry_ingredient: 'orange', expiryDate: '2022-11-25', category: 'Fruit'},
+    { id: 404, pantry_ingredient: 'peach', expiryDate: '2022-11-27', category: 'Fruit'},
+    { id: 405, pantry_ingredient: 'mango', expiryDate: '2022-11-29', category: 'Fruit'},
+    { id: 666, pantry_ingredient: 'Eye of Newt', expiryDate: '2067-11-21', category: 'Dairy'}
+  ]);
 
   const getUserFavorites = () => {
     axios.get('/favorite', {params: {email: user.email}}).then(favorites => {
@@ -48,7 +57,6 @@ const App = () => {
     }
     var dummyBody = {ingredients: ["chicken"]}
     axios.get('/recipes', {params: dummyBody}).then(val => {
-      console.log(val.data)
       setRecipes(val.data)}
       ).catch(error => console.log(error))
   }, [user])
@@ -65,8 +73,8 @@ const App = () => {
           {isAuthenticated ? <Route path='/account' element={<Account />} /> : null}
           <Route path="/:recipeId" element={<RecipeFull toggleFavorite={toggleFavorite} />} />
           <Route path="/addPantryItem" element={<AddPantryItem />} />
-          <Route path="/" element={recipes && <Recipes recipes={recipes} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>} />
-          <Route path="/pantry" element={<Pantry />} />
+          <Route path="/" element={recipes && ingredients && <Recipes setRecipes={setRecipes} recipes={recipes} ingredients={ingredients} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>} />
+          <Route path="/pantry" element={<Pantry ingredients={ingredients} setIngredients={setIngredients} />} />
         </Routes>
       </AnimatePresence>
     </motion.div>

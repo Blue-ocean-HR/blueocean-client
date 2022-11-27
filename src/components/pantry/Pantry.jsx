@@ -4,24 +4,12 @@ import {Link} from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 
 import PantryList from './PantryList.jsx'
-
 const predefinedCategories = ['Veggie', 'Fruit', 'Grain', 'Protein', 'Dairy', 'Other'];
 
-const Pantry = () => {
+const Pantry = ({ingredients, setIngredients}) => {
   const { user, isAuthenticated } = useAuth0();
-
   const [search, setSearch] = React.useState('');
   const [filter, setFilters] = React.useState('');
-
-  const [ingredients, setIngredients] = React.useState([
-    { id: 400, pantry_ingredient: 'pear', expiryDate: '2022-12-05', category: 'Fruit'},
-    { id: 401, pantry_ingredient: 'apple', expiryDate: '2022-12-12', category: 'Fruit'},
-    { id: 402, pantry_ingredient: 'banana', expiryDate: '2022-12-21', category: 'Fruit'},
-    { id: 403, pantry_ingredient: 'orange', expiryDate: '2022-11-25', category: 'Fruit'},
-    { id: 404, pantry_ingredient: 'peach', expiryDate: '2022-11-27', category: 'Fruit'},
-    { id: 405, pantry_ingredient: 'mango', expiryDate: '2022-11-29', category: 'Fruit'},
-    { id: 666, pantry_ingredient: 'Eye of Newt', expiryDate: '2067-11-21', category: 'Dairy'}
-  ]);
 
   React.useEffect(() => {
     console.log('triggered')
