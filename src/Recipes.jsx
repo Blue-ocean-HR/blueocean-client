@@ -5,7 +5,7 @@ import Recipe from './Recipe.jsx'
 import {motion} from 'framer-motion'
 import axios from 'axios'
 
-const Recipes = ({recipes, getUserFavorites, toggleFavorite}) => {
+const Recipes = ({recipes, setRecipes, ingredients, getUserFavorites, toggleFavorite}) => {
   const [query, setQuery] = useState('');
   const [pantry, setPantry] = useState([]);
   const [pantryItem, setPantryItem] = useState("");
@@ -17,8 +17,12 @@ const Recipes = ({recipes, getUserFavorites, toggleFavorite}) => {
   var handleSearch = (e)=> {
     e.preventDefault();
     //console.log(query)
-    var obj = {ingredients: query};
+    var obj = {ingredients: [query]};
     axios.get('/recipes', {params: obj})
+    .then(result => {
+      console.log('RESULT DATA', result.data)
+      setRecipes(result.data)
+    })
 
   }
   var handleFavorite = (e)=> {
@@ -41,8 +45,22 @@ const Recipes = ({recipes, getUserFavorites, toggleFavorite}) => {
         return [...old, pantryItem]
       }
     })
-
   }
+  //calls after an ingredient is added
+  useEffect(()=> {
+    var pan = {ingredients: pantry};
+    axios.get('/recipes', {params: pan})
+    .then(result => {
+      console.log('RESULT DATA', result.data)
+      if(result.data === "") {
+        console.log('INSIDE NULLL')
+        setRecipes([])
+      } else {
+        setRecipes(result.data)
+      }
+    })
+  }, [pantry])
+
   var handleRemove = (item) => {
     var newArr = pantry.filter(pItem=> pItem !== item)
     setPantry(newArr)
@@ -101,8 +119,9 @@ const Recipes = ({recipes, getUserFavorites, toggleFavorite}) => {
         <select onChange={handleIngredientSelect} name="ingredient" id="ingredient-dropdown">
           {/* render pantry items accordingly */}
           <option value="" defaultValue>Choose Ingredients...</option>
-          <option value="pantry item 1">PANTRY 1</option>
-          <option value="pantry item 2">PANTRY 2</option>
+          {ingredients && ingredients.map(ingredient => {
+            return (<option value={ingredient.pantry_ingredient}>{ingredient.pantry_ingredient}</option>)
+          })}
         </select>
         <button onClick={handleIngredientAdd} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"><FontAwesomeIcon icon={faSquarePlus} /></button>
       </div>
@@ -116,10 +135,10 @@ const Recipes = ({recipes, getUserFavorites, toggleFavorite}) => {
       </div>
       {/*map through the recipes*/}
       <div className="flex flex-wrap justify-center gap-4">
-      {recipes.map(recipe => {
+      {recipes.length > 0 ? recipes.map(recipe => {
         //console.log(recipe)
         return (<Recipe recipe={recipe} toggleFavorite={toggleFavorite}/>)
-      })}
+      }): (<div>NO RESULTS FOUND</div>)}
       </div>
 
       </div>
