@@ -28,9 +28,12 @@ const Pantry = ({ingredients, setIngredients}) => {
 
   return (
     <div className='flex flex-col'>
+      <div className="flex justify-center m-4">
+      <h2 className="text-2xl font-bold dark:text-white text-accent">What's in the Pantry/Fridge?</h2>
+      </div>
       <input type='text' placeholder='Search your pantry...' value={search} onChange={(e) => setSearch(e.target.value)} className='w-60 h-8 p-1 rounded-md bg-light self-center text-black border border-secondary m-2' />
 
-      <label className='w-60 p-1 self-center text-primary'>Category:</label>
+      <label className='w-60 p-1 self-center font-bold text-black'>Category:</label>
 
       <select name="cats" id="Category" onChange={(e) => setFilters(e.target.value)}
         className='w-60 h-8 p-1 rounded-md bg-light self-center text-black border border-secondary m-2' >

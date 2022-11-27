@@ -56,7 +56,10 @@ const AddPantryItem = (props) => {
       </label>
       <TextInput
         options={ingredientOptions.map(i => i.ingredients_name)} trigger={''} spacer={''} component={'text'}
-        disabled={usingCustomIngredient} matchAny={true} maxOptions={25} onSelect={(s) => setSystemIngredient(string)}
+        disabled={usingCustomIngredient} matchAny={true} maxOptions={25} onChange={(string) => {
+          console.log(string)
+          setSystemIngredient(string)}
+        }
         className='w-60 h-6 p-2 rounded-md' />
       <label className='flex gap-2'>
         <input type='radio' name='ingredientType' onClick={() => setUsingCustomIngredient(true)} />

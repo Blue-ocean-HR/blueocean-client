@@ -67,10 +67,11 @@
 
 .card {
 	background-color: white;
+	box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .5);
 	color: #272727;
 	border-radius: 10px;
 	border: 0px;
-	border-color: tomato;
+	border-color: #ECB390;
 	border-style: solid;
 	transition: 200ms;
     max-width: 380px;
@@ -79,7 +80,7 @@
 .card:hover {
 	transition: 200ms;
 	border: 3px;
-	border-color: tomato;
+	border-color: #ECB390;
 	border-style: solid;
 }
 
@@ -127,6 +128,10 @@
 	border-radius: 10px;
 	margin-bottom: 10px;
 	margin-top: 10px;
+	width: 300px;
+  height: 200px;
+  object-fit: cover;
+
 }
 .card-like-icon {
 	height: 25px;

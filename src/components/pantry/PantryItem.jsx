@@ -35,10 +35,10 @@ const PantryItem = ({ingredient}) => {
 
   return (
     <div className='flex'>
-      <div className='m-1 p-2 bg-secondary rounded-md text-black flex justify-between grow'>
+      <div className='m-1 p-2 bg-secondary rounded-md text-black flex justify-between grow dark:bg-gray-800 dark:text-white'>
         {!editing && <div>{name}</div>}
         {!editing && <div><strong>Exp Date:</strong> {expiryDate}</div>}
-        {editing && <input type='text' value={name} onChange={(e) => setName(e.target.value)} className='w-40 h-6 p-1 rounded-md bg-light text-black' />}
+        {editing && <input type='text' value={name} onChange={(e) => setName(e.target.value)} className='w-40 h-6 p-1 rounded-md  bg-light  text-black' />}
         {editing && <input type='date' value={expiryDate} onChange={(e) => setExpiryDate(e.target.value)} className='w-24 h-6 p-1 rounded-md bg-light text-xs text-black' />}
       </div>
       {!editing && <div className='m-1 p-2 bg-primary rounded-md text-black' onClick={() => setEditing(true)} >Edit</div>}

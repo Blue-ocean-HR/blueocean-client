@@ -24,7 +24,7 @@ const Nav = ({darkToggle}) => {
           <div>
           <Link to="/">
             <div className="flex items-center py-2 px-3">
-            <img className="w-8 h-8" src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Kawaii_earth_clipart.svg"></img>
+            <img alt="kawaii earth logo" className="w-8 h-8" src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Kawaii_earth_clipart.svg"></img>
             <span className="ml-2 font-bold hover:text-gray-900">Waste Not</span>
             </div>
             </Link>
