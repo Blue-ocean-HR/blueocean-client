@@ -32,11 +32,16 @@ app.delete('/favorite', deleteFavorite)
 // Ingredients
 app.get('/ingredients', getIngredients)
 
-
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
 // direct all requested routes to index.html to let react router handle them
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
   });
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

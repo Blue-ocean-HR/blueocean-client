@@ -15,13 +15,21 @@ const App = () => {
   const location = useLocation();
   const { isLoading, isAuthenticated, user, context } = useAuth0();
   const [darkMode, setDarkMode] = useState('')
-  const [recipes, setRecipes] = useState(null);
+  const [recipes, setRecipes] = useState([]);
 
   const getUserFavorites = () => {
+    if (isAuthenticated) {
     axios.get('/favorite', {params: {email: user.email}}).then(favorites => {
       console.log(favorites)
-      setRecipes(favorites.data)
+      if (favorites.data !== '') {
+        setRecipes(favorites.data)
+      } else {
+        setRecipes("no results")
+      }
+
+
     }).catch(error => console.log(error))
+  }
   }
 
   const toggleFavorite = (fav, recipeId) => {
@@ -44,13 +52,22 @@ const App = () => {
   // Add user to DB if they just signed up
   useEffect(() => {
     if (isAuthenticated) {
+      console.log('user fetch')
       axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
+      var dummyBody = { ingredients: ["chicken"], email: user.email}
+      axios.get('/recipes', {params: dummyBody}).then(val => {
+        console.log(val.data)
+        setRecipes(val.data)}
+        ).catch(error => console.log(error))
+    } else {
+      var dummyBody = { ingredients: ["chicken"]}
+      axios.get('/recipes', {params: dummyBody}).then(val => {
+        console.log(val.data)
+        setRecipes(val.data)}
+        ).catch(error => console.log(error))
     }
-    var dummyBody = {ingredients: ["chicken"]}
-    axios.get('/recipes', {params: dummyBody}).then(val => {
-      console.log(val.data)
-      setRecipes(val.data)}
-      ).catch(error => console.log(error))
+
+
   }, [user])
   return (
     <div >
@@ -65,7 +82,7 @@ const App = () => {
           {isAuthenticated ? <Route path='/account' element={<Account />} /> : null}
           <Route path="/:recipeId" element={<RecipeFull toggleFavorite={toggleFavorite} />} />
           <Route path="/addPantryItem" element={<AddPantryItem />} />
-          <Route path="/" element={recipes && <Recipes recipes={recipes} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>} />
+          <Route path="/" element={recipes && <Recipes recipes={recipes} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>}/>
           <Route path="/pantry" element={<Pantry />} />
         </Routes>
       </AnimatePresence>
