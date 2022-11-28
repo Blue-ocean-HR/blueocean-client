@@ -96,6 +96,7 @@ const App = () => {
           <Route path="/addPantryItem" element={<AddPantryItem />} />
           <Route path="/" element={recipes && ingredients && <Recipes setRecipes={setRecipes} recipes={recipes} ingredients={ingredients} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>} />
           <Route path="/pantry" element={<Pantry ingredients={ingredients} setIngredients={setIngredients} />} />
+          <Route path="/about" element={<About />}/>
         </Routes>
       </AnimatePresence>
     </motion.div>

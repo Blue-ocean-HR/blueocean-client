@@ -6,18 +6,18 @@ exports.getRecipes = (req, res) => {
   console.log('recipes query', req.query)
   axios.get('http://localhost:3000/recipes', {data: {ingredients: req.query.ingredients}, params: {email: req.query.email}}).then(async (recipes) => {
     let recipesArr = recipes.data;
-    let promises = []
-      recipesArr.map(recipe => {
-        promises.push(axios.get(`https://api.unsplash.com/search/photos?page=1&query=${recipe.title + ' meal'}&client_id=Jw8aHDiAzilA3nvdb3mvVeEtcXcLaVeNi3chvuBz-0g`))
-      })
-      Promise.all(promises).then(data => {
-        for (let i = 0; i < recipesArr.length; i++) {
-          recipesArr[i].url = data[i].data.results[0].urls.small
-        }
-        console.log(recipesArr)
-        res.send(recipesArr)
-      })
-      // res.send(recipesArr)
+    // let promises = []
+    //   recipesArr.map(recipe => {
+    //     promises.push(axios.get(`https://api.unsplash.com/search/photos?page=1&query=${recipe.title + ' meal'}&client_id=Jw8aHDiAzilA3nvdb3mvVeEtcXcLaVeNi3chvuBz-0g`))
+    //   })
+    //   Promise.all(promises).then(data => {
+    //     for (let i = 0; i < recipesArr.length; i++) {
+    //       recipesArr[i].url = data[i].data.results[0].urls.small
+    //     }
+    //     console.log(recipesArr)
+    //     res.send(recipesArr)
+    //   })
+      res.send(recipesArr)
   }).catch(error => console.log(error))
 }
 
@@ -82,7 +82,7 @@ exports.getPantryItems = (req, res) => {
 // axios.get('/pantry', {params: {email: "max.philip1@gmail.com"}}).then(data => console.log(data)).catch(error => console.log(error))
 
 exports.getFavorites = (req, res) => {
-  axios.get('http://localhost:8080/favorite', {params: {email: req.query.email}}).then(recipes => {
+  axios.get('http://localhost:3000/favorite', {params: {email: req.query.email}}).then(recipes => {
     let recipesArr = recipes.data;
     let promises = []
       recipesArr.map(recipe => {
