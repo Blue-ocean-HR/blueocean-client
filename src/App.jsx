@@ -5,7 +5,8 @@ import Pantry, {PantryContext} from './components/pantry/Pantry.jsx'
 import Account from './components/Account.jsx'
 import RecipeFull from './components/RecipeFull.jsx'
 import AddPantryItem from './components/addPantryItem/addPantryItem.jsx';
-import Nav from './Nav.jsx'
+import About from './components/About.jsx';
+import Nav from './Nav.jsx';
 
 import {Routes, Route, Link, useLocation} from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
@@ -29,7 +30,6 @@ const App = () => {
   const getUserFavorites = () => {
     if (isAuthenticated) {
     axios.get('/favorite', {params: {email: user.email}}).then(favorites => {
-      console.log(favorites)
       if (favorites.data !== '') {
         setRecipes(favorites.data)
       } else {
@@ -42,10 +42,12 @@ const App = () => {
   }
 
   const toggleFavorite = (fav, recipeId) => {
-    if (!fav) {
-      axios.delete('/favorite', {params: {email: user.email, recipe_id: recipeId}})
-    } else {
-      axios.post('/favorite', {email: user.email, recipe_id: recipeId})
+    if (isAuthenticated) {
+      if (!fav) {
+        axios.delete('/favorite', {params: {email: user.email, recipe_id: recipeId}})
+      } else {
+        axios.post('/favorite', {email: user.email, recipe_id: recipeId})
+      }
     }
   }
 
@@ -63,7 +65,7 @@ const App = () => {
     if (isAuthenticated) {
       console.log('user fetch')
       axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
-      var dummyBody = { ingredients: ["chicken"], email: user.email}
+      var dummyBody = { ingredients: [""], email: user.email}
       axios.get('/recipes', {params: dummyBody}).then(val => {
         console.log(val.data)
         setRecipes(val.data)}
@@ -74,13 +76,11 @@ const App = () => {
           }
         })
         .then(result => {
-          console.log(result.data);
           setIngredients(result.data.length > 0 ? result.data : []);
         }).catch(error => console.log(error))
     } else {
-      var dummyBody = { ingredients: ["chicken"]}
+      var dummyBody = { ingredients: [""]}
       axios.get('/recipes', {params: dummyBody}).then(val => {
-        console.log(val.data)
         setRecipes(val.data)}
         ).catch(error => console.log(error))
     }
@@ -102,8 +102,9 @@ const App = () => {
           {isAuthenticated ? <Route path='/account' element={<Account />} /> : null}
           <Route path="/:recipeId" element={<RecipeFull toggleFavorite={toggleFavorite} />} />
           <Route path="/addPantryItem" element={<AddPantryItem />} />
-          <Route path="/" element={recipes && ingredients && <Recipes setRecipes={setRecipes} recipes={recipes} ingredients={ingredients} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>} />
-          <Route path="/pantry" element={<Pantry ingredients={ingredients} setIngredients={setIngredients} />} />
+          <Route path="/" element={recipes && ingredients && <Recipes recipeHomePageRender={recipeHomePageRender} setRecipes={setRecipes} recipes={recipes} ingredients={ingredients} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>} />
+          {isAuthenticated && <Route path="/pantry" element={<Pantry ingredients={ingredients} setIngredients={setIngredients} />} />}
+          <Route path="/about" element={<About />}/>
         </Routes>
       </AnimatePresence>
     </motion.div>

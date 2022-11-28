@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react';
 const FavoriteButton = ({recipe, toggleFavorite}) => {
   const [favorited, setFavorited] = useState(recipe.favorited)
   const handleFavorite = () => {
-    console.log(favorited, recipe.favorited)
     if (favorited) {
       setFavorited(false)
       toggleFavorite(false, recipe.recipe_id)
