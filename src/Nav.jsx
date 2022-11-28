@@ -30,14 +30,14 @@ const Nav = ({darkToggle, recipeHomePageRender}) => {
               </Link>
             </div>
             {/* Primary Nav */}
-            <div className="flex items-center">
+           {isAuthenticated && <div className="flex items-center">
               <Link to="/pantry">
                 <div className=" hover:text-gray-900">
                   My Pantry
                 </div>
 
               </Link>
-            </div>
+            </div>}
             <div className="items-center hidden md:flex">
               <Link to="/about">
                 <div className=" hover:text-gray-900">
