@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require('path');
-const cors = require('cors');
+// const cors = require('cors');
 const https = require('https')
 const { getRecipes, addUser, addPantryItem,
    deletePantryItem, updatePantryItem, getPantryItems,
@@ -14,7 +14,7 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '../dist')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
-app.use(cors())
+// app.use(cors())
 // Routes to recipes database
 app.get('/recipes', getRecipes)
 

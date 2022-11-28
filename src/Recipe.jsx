@@ -1,6 +1,5 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import FavoriteButton from './components/FavoriteButton.jsx'
-import food from './recipe-card-assets/food.jpeg'
 import {Link} from 'react-router-dom'
 
 export default function Recipe({recipe, toggleFavorite}) {
@@ -22,7 +21,7 @@ export default function Recipe({recipe, toggleFavorite}) {
       </div>
       <div className="flex items-center justify-center p-2">
       <Link to={`/${recipe.recipe_id}`} state={{ recipe: recipe }}>
-      <img className="card-image" src={food} alt="Logo" />
+      <img className="card-image" src={recipe.url} alt="Logo" />
       </Link>
       </div>
       <div className="m-3" onClick={handleAccordion}>
