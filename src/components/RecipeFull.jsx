@@ -21,6 +21,7 @@ const RecipeFull = ({toggleFavorite}) => {
           <FavoriteButton recipe={recipe} toggleFavorite={toggleFavorite} />
           </div>
       </div>
+      <div className="m-3"><img alt={recipe.title} src={recipe.url}></img></div>
       <div className="mb-8 ml-2 w-full dark:text-white">
         <h3 className="text-xl font-bold">Ingredients</h3>
         <ul className="ml-2 list-disc">

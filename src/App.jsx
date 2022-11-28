@@ -29,7 +29,6 @@ const App = () => {
   const getUserFavorites = () => {
     if (isAuthenticated) {
     axios.get('/favorite', {params: {email: user.email}}).then(favorites => {
-      console.log(favorites)
       if (favorites.data !== '') {
         setRecipes(favorites.data)
       } else {
@@ -63,7 +62,7 @@ const App = () => {
     if (isAuthenticated) {
       console.log('user fetch')
       axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
-      var dummyBody = { ingredients: ["chicken"], email: user.email}
+      var dummyBody = { ingredients: [""], email: user.email}
       axios.get('/recipes', {params: dummyBody}).then(val => {
         console.log(val.data)
         setRecipes(val.data)}
@@ -74,13 +73,11 @@ const App = () => {
           }
         })
         .then(result => {
-          console.log(result.data);
           setIngredients(result.data.length > 0 ? result.data : []);
         }).catch(error => console.log(error))
     } else {
-      var dummyBody = { ingredients: ["chicken"]}
+      var dummyBody = { ingredients: [""]}
       axios.get('/recipes', {params: dummyBody}).then(val => {
-        console.log(val.data)
         setRecipes(val.data)}
         ).catch(error => console.log(error))
     }

@@ -12,7 +12,6 @@ const Pantry = ({ingredients, setIngredients}) => {
   const [filter, setFilters] = React.useState('');
 
   React.useEffect(() => {
-    console.log('triggered')
     if (isAuthenticated) {
     axios.get(`/pantry`, {
       params: {
@@ -20,7 +19,6 @@ const Pantry = ({ingredients, setIngredients}) => {
       }
     })
     .then(result => {
-      console.log(result.data);
       setIngredients(result.data.length > 0 ? result.data : []);
     }).catch(error => console.log(error))
   }
