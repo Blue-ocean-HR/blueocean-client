@@ -43,13 +43,14 @@ const Pantry = ({ingredients, setIngredients}) => {
       <div className="flex items-center justify-center">
       <PantryList ingredients={ingredients.filter(ingredient => ingredient.pantry_ingredient.includes(search) && ingredient.category.includes(filter))} />
       </div>
+      <div className="flex items-center justify-center">
       <Link to='/addPantryItem'>
-        <div className="rounded-full w-14 h-14
+        <div className="mt-3 rounded-full w-14 h-14
                         flex items-center justify-center
                         bg-accent text-light text-2xl
-                        fixed bottom-2 right-2
                         ">+</div>
       </Link>
+      </div>
     </div>
   )
 }

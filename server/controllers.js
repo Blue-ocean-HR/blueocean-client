@@ -14,7 +14,6 @@ exports.getRecipes = (req, res) => {
           let num = Math.floor(Math.random() * (recipesArr.length - 1))
           recipesArr[i].url = data[i].data.results[num].urls.small
         }
-        console.log(recipesArr)
         res.send(recipesArr)
       })
       // res.send(recipesArr)

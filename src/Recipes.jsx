@@ -4,7 +4,7 @@ import {motion} from 'framer-motion'
 import axios from 'axios'
 import { useAuth0 } from "@auth0/auth0-react";
 
-const Recipes = ({recipes, setRecipes, ingredients, getUserFavorites, toggleFavorite}) => {
+const Recipes = ({recipes, setRecipes, ingredients, getUserFavorites, toggleFavorite, recipeHomePageRender}) => {
   const [query, setQuery] = useState('');
   const [pantry, setPantry] = useState([]);
   const [pantryItem, setPantryItem] = useState("");
@@ -120,7 +120,7 @@ const Recipes = ({recipes, setRecipes, ingredients, getUserFavorites, toggleFavo
     <button onClick={handleSearch} type="submit" class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-black bg-secondary rounded-lg border border-secondary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 dark:text-white dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><svg class="mr-2 -ml-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>Search</button>
 </form>
       <div>
-        <button className="m-3 bg-button-accent rounded p-2" onClick={handleFavorite}>My Favorites</button>
+        {isAuthenticated ? <button className="m-3 bg-button-accent rounded p-2" onClick={handleFavorite}>My Favorites</button> : null}
       </div>
       </div>
       {/* CHOOSE INGREDIENTS DROP DOWN */}
@@ -142,9 +142,9 @@ const Recipes = ({recipes, setRecipes, ingredients, getUserFavorites, toggleFavo
         </button>
         </div>
       </div>
-      <div className="filters">
+      <div className="filters m-4">
         {pantry && pantry.map((item, i)=> {
-          return (<div key={i}>{item} <button onClick={()=> {
+          return (<div className="bg-secondary m-3 text-black rounded inline-block" key={i}>{item} <button  onClick={()=> {
             handleRemove(item)
           }}>X</button><br/></div>)
         })}

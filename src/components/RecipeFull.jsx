@@ -30,7 +30,7 @@ const RecipeFull = ({toggleFavorite}) => {
           })}
         </ul>
       </div>
-      <div className="ml-2 dark:text-white">
+      <div className="ml-2 dark:text-white mb-5">
         <h3 className="text-xl font-bold">Directions</h3>
         {recipe.steps.map((item, index) => {
             return (

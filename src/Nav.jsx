@@ -72,9 +72,6 @@ const Nav = ({darkToggle, recipeHomePageRender}) => {
     {/* mobile menu */}
     <div className={`${mobileToggle} md:hidden flex justify-end`}>
       <DarkButton darkToggle={darkToggle} />
-      {/* <NavBarButtons /> */}
-      {/* <a className="block py-2 px-4 text-sm hover:bg-gray-200">Login</a>
-      <a className="block py-2 px-4 text-sm hover:bg-gray-200">Signup</a> */}
     </div>
   </nav>
   )

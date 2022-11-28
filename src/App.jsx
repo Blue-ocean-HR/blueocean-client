@@ -41,10 +41,12 @@ const App = () => {
   }
 
   const toggleFavorite = (fav, recipeId) => {
-    if (!fav) {
-      axios.delete('/favorite', {params: {email: user.email, recipe_id: recipeId}})
-    } else {
-      axios.post('/favorite', {email: user.email, recipe_id: recipeId})
+    if (isAuthenticated) {
+      if (!fav) {
+        axios.delete('/favorite', {params: {email: user.email, recipe_id: recipeId}})
+      } else {
+        axios.post('/favorite', {email: user.email, recipe_id: recipeId})
+      }
     }
   }
 
@@ -99,8 +101,8 @@ const App = () => {
           {isAuthenticated ? <Route path='/account' element={<Account />} /> : null}
           <Route path="/:recipeId" element={<RecipeFull toggleFavorite={toggleFavorite} />} />
           <Route path="/addPantryItem" element={<AddPantryItem />} />
-          <Route path="/" element={recipes && ingredients && <Recipes setRecipes={setRecipes} recipes={recipes} ingredients={ingredients} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>} />
-          <Route path="/pantry" element={<Pantry ingredients={ingredients} setIngredients={setIngredients} />} />
+          <Route path="/" element={recipes && ingredients && <Recipes recipeHomePageRender={recipeHomePageRender} setRecipes={setRecipes} recipes={recipes} ingredients={ingredients} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>} />
+          {isAuthenticated && <Route path="/pantry" element={<Pantry ingredients={ingredients} setIngredients={setIngredients} />} />}
         </Routes>
       </AnimatePresence>
     </motion.div>
