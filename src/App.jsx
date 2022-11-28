@@ -30,7 +30,6 @@ const App = () => {
   const getUserFavorites = () => {
     if (isAuthenticated) {
     axios.get('/favorite', {params: {email: user.email}}).then(favorites => {
-      console.log(favorites)
       if (favorites.data !== '') {
         setRecipes(favorites.data)
       } else {
@@ -43,10 +42,12 @@ const App = () => {
   }
 
   const toggleFavorite = (fav, recipeId) => {
-    if (!fav) {
-      axios.delete('/favorite', {params: {email: user.email, recipe_id: recipeId}})
-    } else {
-      axios.post('/favorite', {email: user.email, recipe_id: recipeId})
+    if (isAuthenticated) {
+      if (!fav) {
+        axios.delete('/favorite', {params: {email: user.email, recipe_id: recipeId}})
+      } else {
+        axios.post('/favorite', {email: user.email, recipe_id: recipeId})
+      }
     }
   }
 
@@ -59,27 +60,34 @@ const App = () => {
       document.getElementById("html").classList.add('dark');
     }
   }
-  // Add user to DB if they just signed up
-  useEffect(() => {
+
+  const recipeHomePageRender = () => {
     if (isAuthenticated) {
       console.log('user fetch')
       axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
-      var dummyBody = { ingredients: ["chicken"], email: user.email}
+      var dummyBody = { ingredients: [""], email: user.email}
       axios.get('/recipes', {params: dummyBody}).then(val => {
         console.log(val.data)
         setRecipes(val.data)}
         ).catch(error => console.log(error))
+        axios.get(`/pantry`, {
+          params: {
+            email: user.email
+          }
+        })
+        .then(result => {
+          setIngredients(result.data.length > 0 ? result.data : []);
+        }).catch(error => console.log(error))
     } else {
-      var dummyBody = { ingredients: ["chicken"]}
+      var dummyBody = { ingredients: [""]}
       axios.get('/recipes', {params: dummyBody}).then(val => {
-        console.log(val.data)
         setRecipes(val.data)}
         ).catch(error => console.log(error))
     }
-    var dummyBody = {ingredients: ["chicken"]}
-    axios.get('/recipes', {params: dummyBody}).then(val => {
-      setRecipes(val.data)}
-      ).catch(error => console.log(error))
+  }
+  // Add user to DB if they just signed up
+  useEffect(() => {
+    recipeHomePageRender()
   }, [user])
   return (
     <div >
@@ -88,14 +96,14 @@ const App = () => {
           animate={{opacity: 1}}
           exit={{opacity: 0}}
           >
-      <Nav darkToggle={darkToggle}/>
+      <Nav darkToggle={darkToggle} recipeHomePageRender={recipeHomePageRender}/>
       <AnimatePresence>
         <Routes location={location}>
           {isAuthenticated ? <Route path='/account' element={<Account />} /> : null}
           <Route path="/:recipeId" element={<RecipeFull toggleFavorite={toggleFavorite} />} />
           <Route path="/addPantryItem" element={<AddPantryItem />} />
-          <Route path="/" element={recipes && ingredients && <Recipes setRecipes={setRecipes} recipes={recipes} ingredients={ingredients} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>} />
-          <Route path="/pantry" element={<Pantry ingredients={ingredients} setIngredients={setIngredients} />} />
+          <Route path="/" element={recipes && ingredients && <Recipes recipeHomePageRender={recipeHomePageRender} setRecipes={setRecipes} recipes={recipes} ingredients={ingredients} getUserFavorites={getUserFavorites} toggleFavorite={toggleFavorite}/>} />
+          {isAuthenticated && <Route path="/pantry" element={<Pantry ingredients={ingredients} setIngredients={setIngredients} />} />}
           <Route path="/about" element={<About />}/>
         </Routes>
       </AnimatePresence>

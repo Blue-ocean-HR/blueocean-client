@@ -3,21 +3,20 @@ const axios = require("axios");
 // Recipe Routes
 exports.getRecipes = (req, res) => {
   let bodyArr = req.query.ingredients || "";
-  console.log('recipes query', req.query)
-  axios.get('http://localhost:3000/recipes', {data: {ingredients: req.query.ingredients}, params: {email: req.query.email}}).then(async (recipes) => {
+  axios.get('http://localhost:3000/recipes', {data: {ingredients: bodyArr}, params: {email: req.query.email}}).then(recipes => {
     let recipesArr = recipes.data;
-    // let promises = []
-    //   recipesArr.map(recipe => {
-    //     promises.push(axios.get(`https://api.unsplash.com/search/photos?page=1&query=${recipe.title + ' meal'}&client_id=Jw8aHDiAzilA3nvdb3mvVeEtcXcLaVeNi3chvuBz-0g`))
-    //   })
-    //   Promise.all(promises).then(data => {
-    //     for (let i = 0; i < recipesArr.length; i++) {
-    //       recipesArr[i].url = data[i].data.results[0].urls.small
-    //     }
-    //     console.log(recipesArr)
-    //     res.send(recipesArr)
-    //   })
-      res.send(recipesArr)
+    let promises = []
+      recipesArr.map(recipe => {
+        promises.push(axios.get(`https://api.unsplash.com/search/photos?page=1&query=${recipe.title + ' meal'}&client_id=Jw8aHDiAzilA3nvdb3mvVeEtcXcLaVeNi3chvuBz-0g`))
+      })
+      Promise.all(promises).then(data => {
+        for (let i = 0; i < recipesArr.length; i++) {
+          let num = Math.floor(Math.random() * (recipesArr.length - 1))
+          recipesArr[i].url = data[i].data.results[num].urls.small
+        }
+        res.send(recipesArr)
+      })
+      // res.send(recipesArr)
   }).catch(error => console.log(error))
 }
 
@@ -47,7 +46,6 @@ exports.addPantryItem = (req, res) => {
 */
 //
 exports.deletePantryItem = (req, res) => {
-  console.log(req.body)
   axios.delete('http://localhost:3000/pantry', {data: {id: req.body.id}}).then(data => {
     res.sendStatus(200)
   }).catch(error => {
@@ -70,7 +68,6 @@ exports.updatePantryItem = (req, res) => {
 // axios.put('/pantry', {name: "", date: 1234, id: 5}).then(data => console.log(data)).catch(error => console.log(error))
 
 exports.getPantryItems = (req, res) => {
-  console.log('pantry', req.query)
   axios.get('http://localhost:3000/pantry', {params: req.query}).then(data => {
     res.send(data.data)
   }).catch(error => {
@@ -103,7 +100,6 @@ exports.getFavorites = (req, res) => {
 }
 
 exports.deleteFavorite = (req, res) => {
-  console.log('delete', req.query)
   axios.delete('http://localhost:3000/favorite', {data: req.query}).then(data => {
     res.sendStatus(200)
   }).catch(error => {
@@ -113,7 +109,6 @@ exports.deleteFavorite = (req, res) => {
 }
 
 exports.addFavorite = (req, res) => {
-  console.log(req.body)
   axios.post('http://localhost:3000/favorite', req.body).then(data => {
     res.sendStatus(200)
   }).catch(error => {
