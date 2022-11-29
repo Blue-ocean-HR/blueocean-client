@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require('path');
+const compression = require('compression') //new
 // const cors = require('cors');
 const https = require('https')
 const { getRecipes, addUser, addPantryItem,
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Serve the files for production
+app.use(compression({level:6, threshold: 0}))
 app.use(express.static(path.resolve(__dirname, '../dist')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))

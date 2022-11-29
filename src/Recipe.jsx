@@ -11,7 +11,7 @@ export default function Recipe({recipe, toggleFavorite}) {
      <div className=" card dark:bg-gray-800 dark:text-white">
       <div className="flex justify-between m-3">
         {/* <div className="m-2 flex"> */}
-        <Link to={`/${recipe.recipe_id}`} state={{ recipe: recipe }}>
+        <Link to={`/full/${recipe.recipe_id}`} state={{ recipe: recipe }}>
           <h5 className="text-xl dark:text-white">{recipe.title}</h5>
           </Link>
           <div>
@@ -20,7 +20,7 @@ export default function Recipe({recipe, toggleFavorite}) {
         {/* </div> */}
       </div>
       <div className="flex items-center justify-center p-2">
-      <Link to={`/${recipe.recipe_id}`} state={{ recipe: recipe }}>
+      <Link to={`/full/${recipe.recipe_id}`} state={{ recipe: recipe }}>
       <img className="card-image" src={recipe.url} alt="Logo" />
       </Link>
       </div>
