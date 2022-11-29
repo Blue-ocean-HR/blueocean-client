@@ -42,11 +42,8 @@ module.exports = {
   plugins: [
     new Dotenv(),
     new CompressionPlugin({
-      filename: "[path].gz[query]",
-      algorithm: "gzip",
-      test: /\.js$|\.css$|\.html$/,
-      threshold: 10240,
-      minRatio: 0.8
+      algorithm: 'gzip',
+      test: /.js$|.css$|.jsx/
     }),
     // new BundleAnalyzerPlugin()
   ]
