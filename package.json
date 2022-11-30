@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "build": "webpack --mode production",
+    "start": "concurrently npm:watch:*",
+    "build": "webpack --mode production && node server.js",
     "watch:compile": "webpack --mode development --watch",
     "watch:serve": "nodemon server/server.js"
   },
