@@ -4,7 +4,7 @@ import {AnimatePresence, motion } from 'framer-motion'
 import Pantry, {PantryContext} from './components/pantry/Pantry.jsx'
 import Account from './components/Account.jsx'
 import RecipeFull from './components/RecipeFull.jsx'
-import AddPantryItem from './components/addPantryItem/addPantryItem.jsx';
+import AddPantryItem from './components/addPantryItem/AddPantryItem.jsx';
 import About from './components/About.jsx';
 import Nav from './Nav.jsx';
 
