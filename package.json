@@ -8,9 +8,7 @@
     "start": "concurrently npm:watch:*",
     "build": "node node_modules/webpack/bin/webpack.js --mode production",
     "watch:compile": "webpack --mode development --watch",
-    "watch:serve": "nodemon server/server.js",
-    "heroku-prebuild": "rm -rf node_modules package-lock.json",
-    "heroku-postbuild": "ls && npm ci && npm run build && node server/server.js"
+    "watch:serve": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
