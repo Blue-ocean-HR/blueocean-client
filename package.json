@@ -6,11 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently npm:watch:*",
-    "build": " node node_modules/webpack/bin/webpack.js --mode production",
+    "build": "node node_modules/webpack/bin/webpack.js --mode production",
     "watch:compile": "webpack --mode development --watch",
     "watch:serve": "nodemon server/server.js",
     "heroku-prebuild": "rm -rf node_modules package-lock.json",
-    "heroku-postbuild": "npm ci && npm run build && node server/server.js"
+    "heroku-postbuild": "ls && npm ci && npm run build && node server/server.js"
   },
   "repository": {
     "type": "git",
