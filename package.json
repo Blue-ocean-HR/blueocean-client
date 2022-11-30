@@ -9,6 +9,7 @@
     "build": "webpack --mode production",
     "watch:compile": "webpack --mode development --watch",
     "watch:serve": "nodemon server/server.js",
+    "heroku-prebuild": "npm install --dev",
     "heroku-postbuild": "npm install && npm run build && node server/server.js"
   },
   "repository": {
