@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require('path');
+require('dotenv').config()
 const compression = require('compression') //new
 // const cors = require('cors');
 const https = require('https')
@@ -7,7 +8,7 @@ const { getRecipes, addUser, addPantryItem,
    deletePantryItem, updatePantryItem, getPantryItems,
     getFavorites, addFavorite, deleteFavorite, getIngredients } = require("./controllers.js")
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT
 
 const app = express();
 
