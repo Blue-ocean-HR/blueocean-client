@@ -10,7 +10,7 @@
     "watch:compile": "webpack --mode development --watch",
     "watch:serve": "nodemon server/server.js",
     "heroku-prebuild": "npm install --save-dev webpack",
-    "heroku-postbuild": "npm ci && npm run build && node server/server.js"
+    "heroku-postbuild": "npm ci && node node_modules/webpack/bin/webpack.js --display-error-details && node server/server.js"
   },
   "repository": {
     "type": "git",
