@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently npm:watch:*",
+    "start": "node server.js",
     "build": "webpack --mode production",
     "watch:compile": "webpack --mode development --watch",
     "watch:serve": "nodemon server/server.js"
@@ -57,5 +57,8 @@
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1"
+  },
+  "engines": {
+    "node": "v16.16.0"
   }
 }

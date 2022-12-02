@@ -40,7 +40,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({ systemvars: true }),
     new CompressionPlugin({
       algorithm: 'gzip',
       test: /.js$|.css$|.jsx/

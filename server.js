@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require('path');
+require('dotenv').config()
 const compression = require('compression') //new
 // const cors = require('cors');
 const https = require('https')
@@ -13,7 +14,7 @@ const app = express();
 
 // Serve the files for production
 app.use(compression({level:6, threshold: 0}))
-app.use(express.static(path.resolve(__dirname, '../dist')));
+app.use(express.static(path.resolve(__dirname, './dist')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 // app.use(cors())
@@ -43,7 +44,7 @@ app.get('*.js', function (req, res, next) {
 });
 // direct all requested routes to index.html to let react router handle them
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
+    res.sendFile(path.resolve(__dirname, './dist', 'index.html'));
   });
 
 
