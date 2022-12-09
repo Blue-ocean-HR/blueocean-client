@@ -54,6 +54,11 @@ Waste Not is a recipe website that lets you search by items you have in your pan
 ## Unsplash API
 The database we used to pull recipes from did not have pictures. We used the unsplash API to search for relevant pictures based on the recipe title. This is done one every API call to the database. In the future, we will populate the database with more relevant pictures.
 
+## Performance and Accessibility 
+To improve perfomance speeds and decrease first contentful paint, all text fiels were gzipped. Any unnecessary libraries were also removed. This helped reduce the lighthouse performance from an average of 45 to an average of 92.
+
+Typography and contrast were checked using the Stark chrome extension to ensure accessibility for visually impaired users.
+
 ## Contributors
 <a href="https://github.com/Blue-ocean-HR/blueocean-client/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Blue-ocean-HR/blueocean-client" />
