@@ -40,6 +40,18 @@ Waste Not is a recipe website that lets you search by items you have in your pan
 
 
 ## Search
+### Searching the recipe database
 ![Alt Text](https://github.com/Blue-ocean-HR/blueocean-client/blob/main/Dec-09-2022%2013-15-51.gif)
+1. Search Bar - Search the database for recipes with keywords. This will return all recipes that contain ingredients that match your searched keywords. Recipes will be sorted by the number of ingredients in the recipe that you have in your pantry. 
+2. Filter by Pantry Ingredients - Filter the recipes using specific items from your pantry. Recipes will again be sorted by the number of ingredients in the recipe that you have in your pantry
+3. Favorites - You can favorite a recipe by clicking on the heart icon. You can also filter by favorites by clicking the my favorites button.
 
 ![Alt Text](https://github.com/Blue-ocean-HR/blueocean-client/blob/main/login_waste-not.gif)
+
+## Unsplash API
+The database we used to pull recipes from did not have pictures. We used the unsplash API to search for relevant pictures based on the recipe title. This is done one every API call to the database. In the future, we will populate the database with more relevant pictures.
+
+## Contributors
+<a href="https://github.com/Blue-ocean-HR/blueocean-client/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Blue-ocean-HR/blueocean-client" />
+</a>
