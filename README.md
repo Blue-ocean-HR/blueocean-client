@@ -1,5 +1,8 @@
 # WasteNot Frontend
 
+## About
+Waste Not is a recipe website that lets you search by items you have in your pantry and fridge. This will help reduce food waste by showing people how to use up those random items in their pantry that they can't think of a use for. 
+
 
 ## Table of Contents
 - [Pantry](#pantry)
