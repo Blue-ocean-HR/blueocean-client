@@ -34,7 +34,7 @@ const Pantry = ({ingredients, setIngredients}) => {
       <label className='w-60 p-1 self-center font-bold text-black'>Category:</label>
 
       <select name="cats" id="Category" onChange={(e) => setFilters(e.target.value)}
-        className='w-60 h-8 p-1 rounded-md bg-light self-center text-black border border-secondary m-2' >
+        className='hover:cursor-pointer w-60 h-8 p-1 rounded-md bg-light self-center text-black border border-secondary m-2' >
         <option value=''>All</option>
         {predefinedCategories.map((cat, i) => {
           return <option value={cat} key={i}>{cat}</option>
@@ -43,13 +43,15 @@ const Pantry = ({ingredients, setIngredients}) => {
       <div className="flex items-center justify-center">
       <PantryList ingredients={ingredients.filter(ingredient => ingredient.pantry_ingredient.includes(search) && ingredient.category.includes(filter))} />
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center flex-col">
+
       <Link to='/addPantryItem'>
         <div className="mt-3 rounded-full w-14 h-14
                         flex items-center justify-center
                         bg-accent text-light text-2xl
                         ">+</div>
       </Link>
+      <div className="self-center mt-3 font-bold">Add an item to the Pantry</div>
       </div>
     </div>
   )

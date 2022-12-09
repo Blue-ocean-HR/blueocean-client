@@ -44,14 +44,15 @@ const AddPantryItem = (props) => {
         category: category,
         email: user.email
       }).then(data => console.log(data)).catch(error => console.log(error));
-      navigate('/pantry');
+      navigate('/pantryItems');
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center gap-8">
-      <label className='flex gap-2'>
-        <input type='radio' onClick={() => setUsingCustomIngredient(false)} defaultChecked={true} name='ingredientType' />
+    <form onSubmit={handleSubmit} className="flex flex-col items-center gap-8 dark:text-white">
+      <label className="mt-3 text-2xl text-accent dark:text-white">Add to Pantry</label>
+      <label className='flex gap-2 dark:text-white'>
+        <input type='radio' className="checked:text-primary" onClick={() => setUsingCustomIngredient(false)} defaultChecked={true} name='ingredientType' />
         System Ingredient:
       </label>
       <TextInput
@@ -61,38 +62,38 @@ const AddPantryItem = (props) => {
           setSystemIngredient(string)}
         }
         className='w-60 h-6 p-2 rounded-md' />
-      <label className='flex gap-2'>
-        <input type='radio' name='ingredientType' onClick={() => setUsingCustomIngredient(true)} />
+      <label className='flex gap-2 dark:text-white'>
+        <input type='radio' className="checked:text-primary" name='ingredientType' onClick={() => setUsingCustomIngredient(true)} />
         Custom Ingredient:
       </label>
       <input type="text" value={customIngredient} disabled={!usingCustomIngredient} onChange={(e) => setCustomIngredient(e.target.value)}
         className='w-60 h-6 p-2 rounded-md'/>
-      <label className='flex gap-2'>
+      <label className='flex gap-2 dark:text-white'>
         Expiry Date:
         <input type='date' value={expiryDate} onChange={(e) => setExpiryDate(e.target.value)}
-        className='w-30 h-6 p-2 rounded-md' />
+        className='hover:cursor-pointer w-30 h-6 p-2 rounded-md' />
       </label>
       <label>Category:</label>
-      <div className='flex w-5/6 flex-wrap gap-10'>
+      <div className='flex w-5/6 flex-wrap gap-10 justify-center'>
         {predefinedCategories.map((cat, i) => {
           if(cat === 'Other') {
             return (
-              <label key={i} className='flex gap-2'>
-                <input type='radio' onClick={() => setCategory(cat)} defaultChecked={true} name='category' />
+              <label key={i} className='flex gap-2 dark:text-white'>
+                <input type='radio' className="checked:text-primary" onClick={() => setCategory(cat)} defaultChecked={true} name='category' />
                 {cat}
               </label>
             )
           } else {
             return (
-              <label key={i} className='flex gap-2'>
-                <input type='radio' onClick={() => setCategory(cat)} name='category' />
+              <label key={i} className='hover:cursor-pointer flex gap-2 dark:text-white'>
+                <input type='radio' className="checked:text-primary" onClick={() => setCategory(cat)} name='category' />
                 {cat}
               </label>
             )
           }
         })}
       </div>
-      <input type="submit" value="Add Ingredient" className="rounded-lg p-3 bg-accent"/>
+      <input type="submit" value="Add Ingredient" className="hover:cursor-pointer rounded-lg p-3 text-white bg-accent"/>
     </form>
   )
 }

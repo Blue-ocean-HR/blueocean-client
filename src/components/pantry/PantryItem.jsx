@@ -30,7 +30,7 @@ const PantryItem = ({ingredient}) => {
   function handleDelete() {
   // TODO: Axios delete call w/ Email & Pantry Item ID (ingredient.id)
     axios.delete(`/pantry`, {data: {id: ingredient.id}});
-    navigate('/pantry');
+    navigate('/pantryItems');
   }
 
   return (
@@ -41,9 +41,9 @@ const PantryItem = ({ingredient}) => {
         {editing && <input type='text' value={name} onChange={(e) => setName(e.target.value)} className='w-40 h-6 p-1 rounded-md  bg-light  text-black' />}
         {editing && <input type='date' value={expiryDate} onChange={(e) => setExpiryDate(e.target.value)} className='w-24 h-6 p-1 rounded-md bg-light text-xs text-black' />}
       </div>
-      {!editing && <div className='m-1 p-2 bg-primary rounded-md text-black' onClick={() => setEditing(true)} >Edit</div>}
-      {editing && <div className='m-1 p-2 bg-primary rounded-md text-black' onClick={handleSave} >Save</div>}
-      {!editing && <div className='m-1 p-2 bg-primary rounded-md text-black' onClick={handleDelete} >X</div>}
+      {!editing && <div className='m-1 p-2 hover:cursor-pointer bg-primary rounded-md text-black' onClick={() => setEditing(true)} >Edit</div>}
+      {editing && <div className='m-1 p-2 bg-primary rounded-md hover:cursor-pointer text-black' onClick={handleSave} >Save</div>}
+      {!editing && <div className='m-1 p-2 bg-primary rounded-md hover:cursor-pointer text-black' onClick={handleDelete} >X</div>}
     </div>
 
   )

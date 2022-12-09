@@ -25,7 +25,7 @@ const Nav = ({darkToggle, recipeHomePageRender}) => {
               <Link to="/">
                 <div className="flex items-center py-2 px-3">
                   <img alt="kawaii earth logo" className="w-8 h-8" src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Kawaii_earth_clipart.svg"></img>
-                  <span className="ml-2 font-bold hover:text-gray-900">Waste Not</span>
+                  <span className="ml-2 font-bold hover:text-gray-900 dark:hover:text-secondary">Waste Not</span>
                 </div>
               </Link>
             </div>
@@ -33,7 +33,7 @@ const Nav = ({darkToggle, recipeHomePageRender}) => {
             {isAuthenticated &&
             <div className="flex items-center">
               <Link to="/pantryItems">
-                <div className=" hover:text-gray-900">
+                <div className=" hover:text-gray-900 dark:hover:text-secondary">
                   My Pantry
                 </div>
 
@@ -41,7 +41,7 @@ const Nav = ({darkToggle, recipeHomePageRender}) => {
             </div>}
             <div className="items-center hidden md:flex">
               <Link to="/about">
-                <div className=" hover:text-gray-900">
+                <div className=" hover:text-gray-900 dark:hover:text-secondary">
                   About us
                 </div>
               </Link>
@@ -63,7 +63,7 @@ const Nav = ({darkToggle, recipeHomePageRender}) => {
             <div className="hidden md:block">
               <DarkButton darkToggle={darkToggle} />
             </div>
-            {isAuthenticated ? <Link to='/account'><div className=" mr-3 hover:text-gray-900">Account</div></Link> :
+            {isAuthenticated ? <Link to='/account'><div className=" mr-3 hover:text-gray-900 dark:hover:text-secondary">Account</div></Link> :
               <NavBarButtons />}
           </div>
 
@@ -83,7 +83,7 @@ const Nav = ({darkToggle, recipeHomePageRender}) => {
           <DarkButton darkToggle={darkToggle} />
           <div>
             <Link to="/about">
-              <div className="dark:text-white hover:text-gray-900">
+              <div className="dark:text-white hover:text-gray-900 dark:hover:text-secondary">
                 About us
               </div>
             </Link>
