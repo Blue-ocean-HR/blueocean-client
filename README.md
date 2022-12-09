@@ -23,8 +23,20 @@ Waste Not is a recipe website that lets you search by items you have in your pan
 
 
 ## Pantry
+### How to get access to your personal Pantry list
 ![Alt Text](https://github.com/Blue-ocean-HR/blueocean-client/blob/main/pantry_list.gif)
+  1. click "My Pantry" on the navigation bar
+  2. to edit item's name click edit button next to the item.
+  3. to only see certain category of your pantry list, select a category under "Category"
+  
+### adding items to your pantry
 ![Alt Text](https://github.com/Blue-ocean-HR/blueocean-client/blob/main/pantry_item.gif)
+  1. click the "+" icon at the bottom
+  2. type your ingreident name under system ingredient and choose from the selection given below
+  3. if your ingredient is not found, select custom ingredient and type your ingredient name
+  4. select the expiry date by clicking the calender icon next to "Expiry Date"
+  5. select a catgory under "Category" 
+  6. click "Add Ingredient" button to add your item to your pantry
 
 
 ## Search
