@@ -57,6 +57,8 @@ The database we used to pull recipes from did not have pictures. We used the uns
 ## Performance and Accessibility 
 To improve perfomance speeds and decrease first contentful paint, all text fiels were gzipped. Any unnecessary libraries were also removed. This helped reduce the lighthouse performance from an average of 45 to an average of 92.
 
+<img src="https://github.com/Blue-ocean-HR/blueocean-client/blob/main/lighthouse.png"></img>
+
 Typography and contrast were checked using the Stark chrome extension to ensure accessibility for visually impaired users.
 
 ## Contributors
