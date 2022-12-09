@@ -20,8 +20,11 @@
 
 
 ## Pantry
+![Alt Text](https://github.com/Blue-ocean-HR/blueocean-client/blob/main/pantry_list.gif)
+![Alt Text](https://github.com/Blue-ocean-HR/blueocean-client/blob/main/pantry_item.gif)
+
 
 ## Search
 ![Alt Text](https://github.com/Blue-ocean-HR/blueocean-client/blob/main/Dec-09-2022%2013-15-51.gif)
 
-![Alt Text](https://github.com/Blue-ocean-HR/blueocean-client/blob/main/Dec-09-2022%2011-47-24.gif)
+![Alt Text](https://github.com/Blue-ocean-HR/blueocean-client/blob/main/login_waste-not.gif)
