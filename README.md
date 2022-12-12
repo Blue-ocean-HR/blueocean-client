@@ -30,7 +30,7 @@ We chose to use Tailwind CSS because we find it to be easier to write and mainta
   2. to edit item's name click edit button next to the item.
   3. to only see certain category of your pantry list, select a category under "Category"
   
-### adding items to your pantry
+### Adding items to your pantry
 ![Alt Text](https://github.com/Blue-ocean-HR/blueocean-client/blob/main/pantry_item.gif)
   1. click the "+" icon at the bottom
   2. type your ingreident name under system ingredient and choose from the selection given below
