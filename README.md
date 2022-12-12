@@ -22,7 +22,7 @@ We designed this app to reduce food waste by helping people keep track of their 
 ![TAILWIND](https://img.shields.io/badge/TailWind_CSS-06B6D4?style=for-the-badge&logo=tailWindCss&logoColor=white)
 ![AUTH0](https://img.shields.io/badge/AUTH0-EB5424?style=for-the-badge&logo=AUTH0&logoColor=white)
 
-We chose to use Tailwind CSS because we find it to be easier to write and maintain than vanilla CSS. You do lose some an element of control, but for our purposes with Waste Not this trade off was well worth it. For authentication, we chose Auth0 instead of building our own system due to time contstraints, ease of use and the reailty that our system would be less secure. The client also requested google login, which comes built-in with Auth0. 
+We chose to use Tailwind CSS because we find it to be easier to write and maintain than vanilla CSS. You do lose an element of control, but for our purposes with Waste Not this trade off was well worth it. For authentication, we chose Auth0 instead of building our own system due to time contstraints, ease of use and the reailty that our system would be less secure. The client also requested google login, which comes built-in with Auth0. 
 ## Pantry
 ### How to get access to your personal Pantry list
 ![Alt Text](https://github.com/Blue-ocean-HR/blueocean-client/blob/main/pantry_list.gif)
