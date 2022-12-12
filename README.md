@@ -7,11 +7,9 @@
 - [Search](#search)
 
 ## About
-Waste Not is a recipe website that lets you search by items you have in your pantry and fridge. This will help reduce food waste by showing people how to use up those random items in their pantry that they can't think of a use for. 
+Global food waste is a growing problem all across the world. We were alarmed by the fact that about $1.9 billion worth of food was wasted in 2021 and was projected to grow further along the years. 
 
-
-
-
+We designed this app to reduce food waste by helping people keep track of their food in their pantry and fridge. Waste Not will recommend you recipes according to your pantry items and notify you when your food is about to go bad.
 
 ## Tech Stack
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
