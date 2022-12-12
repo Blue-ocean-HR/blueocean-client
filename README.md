@@ -49,6 +49,10 @@ We chose to use Tailwind CSS because we find it to be easier to write and mainta
 
 ![Alt Text](https://github.com/Blue-ocean-HR/blueocean-client/blob/main/login_waste-not.gif)
 
+1. Click the login button to login or signup through Auth0. Use an email address or sign in with google
+2. Select light/dark mode with the toggle button on the right hand side of the navbar.
+3. Pantry is only displayed to registered users, guests cannot use the pantry component.
+
 ## Unsplash API
 The database we used to pull recipes from did not have pictures. We used the unsplash API to search for relevant pictures based on the recipe title. This is done one every API call to the database. In the future, we will populate the database with more relevant pictures.
 
