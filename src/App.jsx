@@ -17,6 +17,7 @@ const App = () => {
   const { isLoading, isAuthenticated, user, context } = useAuth0();
   const [darkMode, setDarkMode] = useState('')
   const [recipes, setRecipes] = useState([]);
+  // Default pantry - only exists if the server is down
   const [ingredients, setIngredients] = useState([
     { id: 400, pantry_ingredient: 'pear', expiryDate: '2022-12-05', category: 'Fruit'},
     { id: 401, pantry_ingredient: 'apple', expiryDate: '2022-12-12', category: 'Fruit'},
@@ -67,7 +68,7 @@ const App = () => {
       axios.post('/users', {email: user.email}).then(data => console.log(data)).catch(error => console.log(error))
       var dummyBody = { ingredients: [""], email: user.email}
       axios.get('/recipes', {params: dummyBody}).then(val => {
-        console.log(val.data)
+
         setRecipes(val.data)}
         ).catch(error => console.log(error))
         axios.get(`/pantry`, {

@@ -16,19 +16,16 @@ const Recipes = ({recipes, setRecipes, ingredients, getUserFavorites, toggleFavo
   }
   var handleSearch = (e)=> {
     e.preventDefault();
-    //console.log(query)
     if (isAuthenticated) {
       var obj = {ingredients: [query], email: user.email};
       axios.get('/recipes', {params: obj})
       .then(result => {
-        console.log('RESULT DATA', result.data)
         setRecipes(result.data)
       })
     } else
     var obj = {ingredients: [query]};
     axios.get('/recipes', {params: obj})
     .then(result => {
-      console.log('RESULT DATA', result.data)
       setRecipes(result.data)
     })
 
@@ -45,7 +42,6 @@ const Recipes = ({recipes, setRecipes, ingredients, getUserFavorites, toggleFavo
 
   var handleIngredientAdd = (e) => {
     e.preventDefault();
-    //console.log(pantry, pantryItem)
     setPantry(old => {
       if(old.indexOf(pantryItem) !== -1) {
         return old;

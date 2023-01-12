@@ -5,7 +5,6 @@ import {LogoutButton} from './logout-button.jsx'
 
 const Account = () => {
   const {user} = useAuth0()
-  console.log(user);
   const profilePic = user.picture || "https://upload.wikimedia.org/wikipedia/commons/b/bd/Kawaii_earth_clipart.svg";
   return (
     <div className="flex justify-center">

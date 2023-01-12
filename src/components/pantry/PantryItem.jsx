@@ -17,8 +17,7 @@ const PantryItem = ({ingredient}) => {
     if(name === '') {
       window.alert('invalid name');
     } else {
-      axios.put('/pantry', {name: "", date: 1234, id: 5}).then(data => console.log(data)).catch(error => console.log(error))
-    // TODO: Axios update call w/ name, expiryDate, pantryID
+      axios.put('/pantry', {name: "", date: 1234, id: 5}).catch(error => console.log(error))
       axios.put(`/pantry`, {
         name: name,
         date: new Date(Number(expiryDate.substr(0, 4)), Number(expiryDate.substr(5, 2)) - 1, Number(expiryDate.substr(8, 2))).getTime(),
@@ -28,7 +27,6 @@ const PantryItem = ({ingredient}) => {
   }
 
   function handleDelete() {
-  // TODO: Axios delete call w/ Email & Pantry Item ID (ingredient.id)
     axios.delete(`/pantry`, {data: {id: ingredient.id}});
     navigate('/pantryItems');
   }

@@ -43,7 +43,7 @@ const AddPantryItem = (props) => {
         date: new Date(Number(expiryDate.substr(0, 4)), Number(expiryDate.substr(5, 2)) - 1, Number(expiryDate.substr(8, 2))).getTime(),
         category: category,
         email: user.email
-      }).then(data => console.log(data)).catch(error => console.log(error));
+      }).catch(error => console.log(error));
       navigate('/pantryItems');
     }
   }
@@ -58,7 +58,6 @@ const AddPantryItem = (props) => {
       <TextInput
         options={ingredientOptions.map(i => i.ingredients_name)} trigger={''} spacer={''} component={'text'}
         disabled={usingCustomIngredient} matchAny={true} maxOptions={25} onChange={(string) => {
-          console.log(string)
           setSystemIngredient(string)}
         }
         className='w-60 h-6 p-2 rounded-md' />
