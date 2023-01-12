@@ -15,11 +15,8 @@ const Nav = ({darkToggle, recipeHomePageRender}) => {
   return (
     // Use the sticky class to make the nav fixed
     <nav className="sticky top-0 z-30">
-      {/* remove the max-w-7xl to make full width */}
       <div className="xl:max-w-7xl mx-auto border bg-secondary dark:bg-black  dark:border-white dark:text-white text-black rounded">
-        {/* use justify between to place divs left center and right on nav bar */}
         <div className="flex justify-between">
-          {/* Logo */}
           <div className="flex space-x-4">
             <div>
               <Link to="/">
@@ -29,7 +26,6 @@ const Nav = ({darkToggle, recipeHomePageRender}) => {
                 </div>
               </Link>
             </div>
-            {/* Primary Nav */}
             {isAuthenticated &&
             <div className="flex items-center">
               <Link to="/pantryItems">
@@ -51,13 +47,6 @@ const Nav = ({darkToggle, recipeHomePageRender}) => {
 
           {/* Secondary Nav */}
           <div className="hidden md:flex items-center space-x-1">
-            {/* <DarkButton darkToggle={darkToggle} />
-            <NavBarButtons /> */}
-            {/* <div className="py-3 px-3">Login</div>
-          <div className="py-3 px-3">Signup</div> */}
-            {/* Mobile button */}
-
-            {/* Place authenticate button here */}
           </div>
           <div className="flex items-center ">
             <div className="hidden md:block">

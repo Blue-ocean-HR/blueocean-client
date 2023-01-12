@@ -8,11 +8,6 @@ export const SignupButton = () => {
     await loginWithRedirect({
       screen_hint: "signup",
     });
-    /*
-          appState: {
-        returnTo: "/profile",
-      },
-      */
   };
 
   return (

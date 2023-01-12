@@ -8,11 +8,9 @@ export const NavBarButtons = () => {
   const { isAuthenticated } = useAuth0();
 
   return (
-    // style for mobile
     <div>
       {!isAuthenticated && (
         <>
-          {/* <SignupButton /> */}
           <LoginButton />
         </>
       )}

@@ -22,8 +22,6 @@ const AddPantryItem = (props) => {
 
   // initial load
   React.useEffect(() => {
-    // TODO: get email from Auth0
-    // TODO: get ingredientOptions from server
     axios.get(`/ingredients`)
     .then(result => {
       setIngredientOptions(result.data);

@@ -148,7 +148,7 @@ const Recipes = ({recipes, setRecipes, ingredients, getUserFavorites, toggleFavo
       <div className="flex flex-wrap justify-center gap-4">
       {recipes.length > 0 ? recipes.map(recipe => {
         return (<Recipe recipe={recipe} toggleFavorite={toggleFavorite}/>)
-      }): (<div>NO RESULTS FOUND</div>)}
+      }): (<div className="text-2xl dark:text-white">NO RESULTS FOUND</div>)}
       </div>
       </div>
 
