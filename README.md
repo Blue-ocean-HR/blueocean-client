@@ -57,7 +57,7 @@ We chose to use Tailwind CSS because we find it to be easier to write and mainta
 The database we used to pull recipes from did not have pictures. We used the unsplash API to search for relevant pictures based on the recipe title. This is done one every API call to the database. In the future, we will populate the database with more relevant pictures.
 
 ## Performance and Accessibility 
-To improve perfomance speeds and decrease first contentful paint, all text fiels were gzipped. Any unnecessary libraries were also removed. This helped reduce the lighthouse performance from an average of 45 to an average of 92.
+To improve perfomance speeds and decrease first contentful paint, all text files were gzipped. Any unnecessary libraries were also removed. This helped reduce the lighthouse performance from an average of 45 to an average of 92.
 
 <img src="https://github.com/Blue-ocean-HR/blueocean-client/blob/main/lighthouse.png"></img>
 
